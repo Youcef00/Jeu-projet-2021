@@ -1,5 +1,8 @@
 package util.player;
 
+import java.util.List;
+import util.characters.Army;
+
 public class WarPlayer extends Player {
 
 	protected int food;
@@ -19,7 +22,6 @@ public class WarPlayer extends Player {
 		this.nbWarriors = nbWarriors;		
 	}
 	
-
 	public int getFood() {
 		return food;
 	}
@@ -28,7 +30,6 @@ public class WarPlayer extends Player {
 		food += nbFood;
 	}
 	
-
 	
 	@Override
 	public String toString() {
