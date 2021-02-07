@@ -1,5 +1,6 @@
 package WarGame;
 
+import Game.Cell;
 import Game.Character;
 import WarGame.util.Biome;
 
@@ -50,7 +51,7 @@ public class Army extends Character {
 	}
 	
 	public int cost() {
-		if (this.cell.getBiome() == Biome.DESERT) {
+		if (this.cell.getBiome() == new Desert(new Sand(0))) {
 			return 2*this.size;
 		}
 		else {

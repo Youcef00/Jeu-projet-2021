@@ -1,7 +1,6 @@
-package WarGame;
+package Game;
 
 import WarGame.util.Biome;
-import Game.Character;
 
 
 public class Cell {
