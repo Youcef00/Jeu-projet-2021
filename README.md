@@ -4,9 +4,9 @@
 
 # Equipe
 
-- Haik PHAGRADIANI
 - Youcef MOUKEUT
-- Alpha-Oumar BARRY
+- Alpha Oumar BARRY
+- Haik PHAGRADIANI
 - Mohamed CAMARA
 
 # Sujet
