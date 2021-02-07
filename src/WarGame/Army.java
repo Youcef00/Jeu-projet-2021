@@ -9,16 +9,14 @@ public class Army extends Character {
 	
 	private int size;
 	private final int MAX_WARRIORS;
-	private Cell cell;
 	
 	public Army(int size, Cell cell) {
-		super(0);
+		super(0, cell);
 		this.MAX_WARRIORS = 5;
 		checkBiome(cell, size);
 	}
 	
 	private void checkBiome(Cell cell, int size) {
-		this.cell = cell;
 		Biome mountain = new Mountain();
 		if (cell.getBiome() == mountain) {
 			this.size += size + 2;
@@ -27,10 +25,6 @@ public class Army extends Character {
 		else {
 			this.size = size;
 		}
-	}
-	
-	public Cell getCell() {
-		return this.cell;
 	}
 	
 	public void addWarriors(int warriors) {
