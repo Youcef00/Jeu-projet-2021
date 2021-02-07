@@ -47,22 +47,9 @@ public class WarPlayer extends Player {
 	
 	public int calculateScore() {
 		int score = this.gold;
-		Biome biome;
 		for(Army a : armies) {
 			score += a.getNbGold();
-			biome = a.getCell().getBiome();
-			if (biome == Biome.PLAIN) {
-				score += 1;
-			}
-			else if (biome == Biome.FOREST) {
-				score += 2;
-			}
-			else if (biome == Biome.MOUNTAIN) {
-				score += 4;
-			}
-			else if (biome == Biome.DESERT) {
-				score += 4;
-			}
+			score += a.getCell().getBiome().score();	
 		}
 		if (armies.size() >= 10) {
 			score += 5;

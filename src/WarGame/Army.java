@@ -1,8 +1,9 @@
 package WarGame;
 
-import Game.Cell;
+import Game.*;
 import Game.Character;
-import WarGame.util.Biome;
+import Game.util.*;
+import WarGame.util.biomes.*;
 
 public class Army extends Character {
 	
@@ -18,7 +19,8 @@ public class Army extends Character {
 	
 	private void checkBiome(Cell cell, int size) {
 		this.cell = cell;
-		if (cell.getBiome() == Biome.MOUNTAIN) {
+		Biome mountain = new Mountain();
+		if (cell.getBiome() == mountain) {
 			this.size += size + 2;
 			this.size %= this.MAX_WARRIORS;
 		}
@@ -51,7 +53,8 @@ public class Army extends Character {
 	}
 	
 	public int cost() {
-		if (this.cell.getBiome() == new Desert(new Sand(0))) {
+		Biome desert = new Desert();
+		if (this.cell.getBiome() == desert) {
 			return 2*this.size;
 		}
 		else {
