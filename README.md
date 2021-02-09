@@ -19,7 +19,7 @@
 
 ### Atteinte des objectifs
 
-- Voici un résume de nos modélisations : 
+Voici un résume de nos modélisations : 
 
 <ul>
 <li>Modélisation des personnages :
@@ -52,13 +52,13 @@
     
 </ul>
 
-- Tous ces modélisations, sont accompagnés d'un diagramme __UML__, qui comporte les attribues et les méthodes associés. Vous trouverez ces __UML__ dans le dossier `/UML`, puis ouvrer l'un des fichiers dont le format vous convient.
+Tous ces modélisations, sont accompagnés d'un diagramme __UML__, qui comporte les attribues et les méthodes associés. Vous trouverez ces __UML__ dans le dossier `/UML`, puis ouvrer l'un des fichiers dont le format vous convient.
 
-- Nous avons aussi organisé et codé la plus part de nos classes modélisées. 
+Nous avons aussi organisé et codé la plus part de nos classes modélisées. 
 
 ### Difficultés restant à résoudre
 
-- Il nous reste à mettre en place les régles des jeux, la modélisation d'un plateau, et plus exactement re-penser la modélisation d'une tuile.
+Il nous reste à mettre en place les régles des jeux, la modélisation d'un plateau, et plus exactement re-penser la modélisation d'une tuile.
 
 
 ## Livrable 2
