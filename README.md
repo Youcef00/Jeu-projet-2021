@@ -19,7 +19,8 @@
 
 ### Atteinte des objectifs
 
-- Voici un résume de nos modélisation : 
+- Voici un résume de nos modélisations : 
+```html
 <ul>
     <li>Modélisation des personnages :
         <ul>
@@ -50,7 +51,7 @@
     </li>
     
 </ul>
-
+```
 - Tous ces modélisations, sont accompagnés d'un diagramme __UML__, qui comporte les attribues et les méthodes associés. Vous trouverez ces __UML__ dans le dossier `/UML`, puis ouvrer l'un des fichiers dont le format vous convient.
 
 - Nous avons aussi organisé et codé la plus part de nos classes modélisées. 
