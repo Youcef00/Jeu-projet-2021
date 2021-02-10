@@ -1,5 +1,7 @@
 package FarmGame;
 
+import java.util.List;
+
 import Game.Cell;
 import Game.Character;
 import Game.Game;
@@ -8,6 +10,12 @@ import Game.util.Resource;
 
 public class FarmGame extends Game {
 
+	
+	
+	public FarmGame(List<Player> players, int nbRounds) {
+		super(players,nbRounds) ;
+	}
+	
 	@Override
 	public void setBoard() {
 		// TODO Auto-generated method stub
@@ -16,27 +24,34 @@ public class FarmGame extends Game {
 
 	@Override
 	public void deploy(Player player, Character character, Cell cell) {
-		// TODO Auto-generated method stub
-
+		cell.addCharacter(character);
+		player.addCharacter(character);
 	}
 
 	@Override
 	public void collect(Player player) {
-		// TODO Auto-generated method stub
-
+		Resource resource ;
+		for (Character c: player.getCharacters()) {
+			resource = c.getCell().getBiome().resource(); 
+			player.addNbResource(resource.toString(), resource.loot());
+		}
 	}
 
 	@Override
 	public boolean convert(Player player, Resource resource, int nbResource) {
-		// TODO Auto-generated method stub
-		return false;
+		if (player.getNbResource(resource.toString()) >= nbResource) {
+			player.addGold(resource.loot());
+			player.addNbResource(resource.toString(), -nbResource);
+			return true ;
+		}
+		return false ;
 	}
 
 	@Override
 	public void distribute(Player player) {
 		// TODO Auto-generated method stub
-
 	}
+	
 
 	@Override
 	public void playOneRound(Player player) {
