@@ -4,4 +4,5 @@ public interface Resource {
 
 	public int loot();
 	public boolean equals(Object o);
+	public String toString();
 }

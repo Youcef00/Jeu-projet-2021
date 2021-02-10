@@ -24,4 +24,8 @@ public class None implements Resource {
 			return false;
 		}
 	}
+	
+	public String toString() {
+		return "None";
+	}
 }

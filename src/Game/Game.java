@@ -1,6 +1,7 @@
 package Game;
 
 import java.util.*;
+import Game.util.Resource;
 
 public abstract class Game {
 
@@ -34,8 +35,9 @@ public abstract class Game {
 		}
 		
 		public abstract void setBoard();
-		public abstract void deploy(Player player, Cell cell);
+		public abstract void deploy(Player player, Character character, Cell cell);
 		public abstract void collect(Player player);
+		public abstract boolean convert(Player player, Resource resource, int nbResource);
 		public abstract void distribute(Player player);
 		public abstract void playOneRound(Player player);
 		public abstract void play();

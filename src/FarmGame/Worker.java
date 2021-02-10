@@ -27,10 +27,10 @@ public class Worker extends Character {
 		Biome forest = new Forest();
 		Biome plain = new Plain();
 		
-		if (this.cell.getBiome() == mountain) { return 5; }
-		else if (this.cell.getBiome() == desert) { return 3; }
-		else if (this.cell.getBiome() == forest) { return 1; }
-		else if (this.cell.getBiome() == plain) { return 1; }
+		if (this.cell.getBiome().equals(mountain)) { return 5; }
+		else if (this.cell.getBiome().equals(desert)) { return 3; }
+		else if (this.cell.getBiome().equals(forest)) { return 1; }
+		else if (this.cell.getBiome().equals(plain)) { return 1; }
 		else { return 0; }
 }
 	

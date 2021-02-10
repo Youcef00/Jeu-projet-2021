@@ -25,4 +25,8 @@ public class Wheat implements Resource {
 			return false;
 		}
 	}
+	
+	public String toString() {
+		return "Wheat";
+	}
 }

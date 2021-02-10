@@ -25,4 +25,8 @@ public class Sand implements Resource {
 			return false;
 		}
 	}
+	
+	public String toString() {
+		return "Sand";
+	}
 }

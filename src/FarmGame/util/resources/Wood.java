@@ -24,4 +24,8 @@ public class Wood implements Resource {
 			return false;
 		}
 	}
+	
+	public String toString() {
+		return "Wood";
+	}
 }

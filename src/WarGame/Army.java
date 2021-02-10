@@ -31,10 +31,14 @@ public class Army extends Character {
 		this.size += warriors;
 		this.size %= this.MAX_WARRIORS;
 	}
-/**	public void changeCell(Cell cell) {
-		this.cell = cell;
-		checkBiome(cell, this.size);
-	}*/
+
+	public int getSize() {
+		return this.size;
+	}
+	
+	public void setSize(int newSize) {
+		this.size = newSize;
+	}
 	
 	public boolean equals(Object o) {
 		if (o instanceof Army) {
