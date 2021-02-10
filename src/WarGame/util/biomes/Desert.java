@@ -1,5 +1,6 @@
 package WarGame.util.biomes;
 
+
 import Game.util.*;
 import WarGame.util.resources.*;
 
@@ -19,6 +20,17 @@ public class Desert implements Biome {
 	
 	public int score() {
 		return SCORE;
+	}
+	
+	public boolean equals(Object o) {
+		if (o instanceof Desert) {
+			Desert other = (Desert) o;
+			return (this.RESOURCE.equals(other.RESOURCE) && this.SCORE == other.SCORE);
+			
+		}
+		else {
+			return false;
+		}
 	}
 
 }

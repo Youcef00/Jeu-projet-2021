@@ -13,5 +13,15 @@ public class None implements Resource {
 	public int loot() {
 		return this.LOOT;
 	}
-
+	
+	public boolean equals(Object o) {
+		if (o instanceof None) {
+			None other = (None) o;
+			return (this.LOOT == other.LOOT);
+			
+		}
+		else {
+			return false;
+		}
+	}
 }

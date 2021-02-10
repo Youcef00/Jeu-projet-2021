@@ -13,5 +13,16 @@ public class Rock implements Resource {
 	public int loot() {
 		return this.LOOT;
 	}
+	
+	public boolean equals(Object o) {
+		if (o instanceof Rock) {
+			Rock other = (Rock) o;
+			return (this.LOOT == other.LOOT);
+			
+		}
+		else {
+			return false;
+		}
+	}
 
 }

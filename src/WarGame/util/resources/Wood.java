@@ -13,4 +13,15 @@ public class Wood implements Resource {
 	public int loot() {
 		return this.LOOT;
 	}
+	
+	public boolean equals(Object o) {
+		if (o instanceof Wood) {
+			Wood other = (Wood) o;
+			return (this.LOOT == other.LOOT);
+			
+		}
+		else {
+			return false;
+		}
+	}
 }

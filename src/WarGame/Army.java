@@ -48,7 +48,7 @@ public class Army extends Character {
 	
 	public int cost() {
 		Biome desert = new Desert();
-		if (this.cell.getBiome() == desert) {
+		if (this.cell.getBiome().equals(desert)) {
 			return 2*this.size;
 		}
 		else {

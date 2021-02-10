@@ -21,5 +21,16 @@ public class Mountain implements Biome {
 	public int score() {
 		return SCORE;
 	}
+	
+	public boolean equals(Object o) {
+		if (o instanceof Mountain) {
+			Mountain other = (Mountain) o;
+			return (this.RESOURCE.equals(other.RESOURCE) && this.SCORE == other.SCORE);
+			
+		}
+		else {
+			return false;
+		}
+	}
 
 }

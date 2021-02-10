@@ -20,5 +20,16 @@ public class Forest implements Biome {
 	public int score() {
 		return SCORE;
 	}
+	
+	public boolean equals(Object o) {
+		if (o instanceof Forest) {
+			Forest other = (Forest) o;
+			return (this.RESOURCE.equals(other.RESOURCE) && this.SCORE == other.SCORE);
+			
+		}
+		else {
+			return false;
+		}
+	}
 
 }

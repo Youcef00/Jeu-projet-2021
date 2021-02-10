@@ -14,4 +14,15 @@ public class Wheat implements Resource {
 	public int loot() {
 		return this.LOOT;
 	}
+	
+	public boolean equals(Object o) {
+		if (o instanceof Wheat) {
+			Wheat other = (Wheat) o;
+			return (this.LOOT == other.LOOT);
+			
+		}
+		else {
+			return false;
+		}
+	}
 }
