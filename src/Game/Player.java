@@ -34,6 +34,7 @@ public abstract class Player {
 	
 	public void removeCharacter(Character character) {
 		this.characters.remove(character);
+		character.getCell().removeCharacter();
 	}
 	
 	public List<Character> getCharacters(){
@@ -52,5 +53,8 @@ public abstract class Player {
 		return this.resources.get(nameResource);
 	}
 	
+	public Map<String, Integer> getResources(){
+		return this.resources;
+	}
 	public abstract int calculateScore();
 }

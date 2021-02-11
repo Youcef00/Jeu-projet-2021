@@ -8,7 +8,7 @@ public class Wheat implements Resource {
 	private final int LOOT;
 	
 	public Wheat() {
-		this.LOOT = 0;
+		this.LOOT = 5;
 	}
 	
 	public int loot() {

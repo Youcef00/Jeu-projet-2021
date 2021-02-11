@@ -18,7 +18,7 @@ public class Army extends Character {
 	
 	private void checkBiome(Cell cell, int size) {
 		Biome mountain = new Mountain();
-		if (cell.getBiome() == mountain) {
+		if (cell.getBiome().equals(mountain)) {
 			this.size += size + 2;
 			this.size %= this.MAX_WARRIORS;
 		}

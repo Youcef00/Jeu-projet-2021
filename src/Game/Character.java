@@ -32,5 +32,5 @@ public abstract class Character {
 		}
 	}
 	
-	protected abstract int cost();
+	public abstract int cost();
 }
