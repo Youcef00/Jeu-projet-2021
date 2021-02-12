@@ -19,7 +19,11 @@ public class Plain implements Biome {
 	}
 	
 	public int score() {
-		return SCORE;
+		return this.SCORE;
+	}
+	
+	public String toString() {
+		return "Plain";
 	}
 	
 	public boolean equals(Object o) {

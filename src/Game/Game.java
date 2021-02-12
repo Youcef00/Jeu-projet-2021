@@ -20,10 +20,12 @@ public abstract class Game {
 		
 		public List<Player> winners() {
 			int bestScore = 0;
+			int tmpScore;
 			List<Player> winners = new ArrayList<Player>();
 			for(Player p: this.players) {
-				if (p.calculateScore() >= bestScore) {
-					bestScore = p.calculateScore();
+				tmpScore = p.calculateScore();
+				if (tmpScore >= bestScore) {
+					bestScore = tmpScore;
 				}
 			}
 			for(Player p: this.players) {

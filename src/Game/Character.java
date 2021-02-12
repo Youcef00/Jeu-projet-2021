@@ -22,15 +22,9 @@ public abstract class Character {
 		this.nbGold += gold;
 	}
 	
-	public boolean equals(Object o) {
-		if (o instanceof Character) {
-			Character other = (Character) o;
-			return (this.cell.equals(other.cell) && this.nbGold == other.nbGold) ;
-		}
-		else {
-			return false;
-		}
-	}
+	public abstract boolean equals(Object o);
+	
+	public abstract String toString();
 	
 	public abstract int cost();
 }

@@ -45,6 +45,10 @@ public class Cell {
 		return this.character == null;
 	}
 	
+	public String toString() {
+		return "Biome: " + this.biome.toString() + " X: " + this.x + " Y: " + this.y;
+	}
+	
 	public boolean equals(Object o) {
 		if (o instanceof Cell) {
 			Cell other = (Cell) o;

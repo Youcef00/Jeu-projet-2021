@@ -36,8 +36,10 @@ public class WarPlayer extends Player {
 	}
 	
 	public int calculateScore() {
-		int score = this.gold;
+		int score = this.getGold();
 		for(Character a : this.characters) {
+			//System.out.println("- " + score);
+			//System.out.println("biome: " + a.getCell().getBiome().score());
 			score += a.getNbGold();
 			score += a.getCell().getBiome().score();	
 		}

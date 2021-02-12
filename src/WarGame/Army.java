@@ -10,17 +10,30 @@ public class Army extends Character {
 	private int size;
 	private final int MAX_WARRIORS;
 	
-	public Army(int size, Cell cell) {
+	public Army(int size, Cell cell) throws MaxSizeExceededException{
 		super(0, cell);
 		this.MAX_WARRIORS = 5;
 		checkBiome(cell, size);
 	}
 	
-	private void checkBiome(Cell cell, int size) {
+	private void checkBiome(Cell cell, int size) throws MaxSizeExceededException{
 		Biome mountain = new Mountain();
-		if (cell.getBiome().equals(mountain)) {
+		Biome desert = new Desert();
+		Biome ocean = new Ocean();
+		if (cell.getBiome().equals(ocean)) {
+			throw new MaxSizeExceededException("Can't put army in Ocean biome!");
+		}
+		else if (cell.getBiome().equals(mountain) && size <= 3) {
 			this.size += size + 2;
-			this.size %= this.MAX_WARRIORS;
+			if (this.size > this.MAX_WARRIORS) {
+				this.size = this.MAX_WARRIORS;
+			}
+		}
+		else if ((cell.getBiome().equals(mountain) || cell.getBiome().equals(desert)) && size > 3){
+			throw new MaxSizeExceededException("The biome " + cell.getBiome().toString() + " does not support this size! (max is 3)");
+		}
+		else if (size > this.MAX_WARRIORS) {
+			throw new MaxSizeExceededException("Max Warriors Exceeded no more than "+this.MAX_WARRIORS+" warriors");
 		}
 		else {
 			this.size = size;
@@ -48,6 +61,10 @@ public class Army extends Character {
 		else {
 			return false;
 		}
+	}
+	
+	public String toString() {
+		return "Army Size: " + this.size + " Gold: " + this.nbGold + " Cell: [" + this.cell.toString() + "]";  
 	}
 	
 	public int cost() {

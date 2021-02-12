@@ -18,7 +18,11 @@ public class Forest implements Biome {
 	}
 	
 	public int score() {
-		return SCORE;
+		return this.SCORE;
+	}
+	
+	public String toString() {
+		return "Forest";
 	}
 	
 	public boolean equals(Object o) {

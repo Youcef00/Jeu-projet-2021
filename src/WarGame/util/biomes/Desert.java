@@ -19,9 +19,12 @@ public class Desert implements Biome {
 	}
 	
 	public int score() {
-		return SCORE;
+		return this.SCORE;
 	}
 	
+	public String toString() {
+		return "Desert";
+	}
 	public boolean equals(Object o) {
 		if (o instanceof Desert) {
 			Desert other = (Desert) o;

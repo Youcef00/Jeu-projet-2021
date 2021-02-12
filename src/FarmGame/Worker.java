@@ -21,6 +21,10 @@ public class Worker extends Character {
 		}
 	}
 	
+	public String toString() {
+		return "Worker: " + this.nbGold + " Cell: "+ this.cell.toString();
+	}
+	
 	public int cost() {
 		Biome mountain = new Mountain();
 		Biome desert = new Desert();

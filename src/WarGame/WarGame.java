@@ -35,54 +35,60 @@ public class WarGame extends Game {
 		
 		//Reviens  Armé desert max 3
 		public void deploy(Player player, Character character, Cell cell) {
+			player.addCharacter(character);
+			Army a = (Army) character;
+			WarPlayer wp = (WarPlayer) player;
+			wp.removeWarriors(a.getSize());
 			cell.addCharacter(character);
+			
 			// North
-			try { effectCell(player, this.players, cell, board[cell.getX()-1][cell.getY()]); } catch (ArrayIndexOutOfBoundsException e) {}
+			try { effectCell(player, this.players, cell, this.board[cell.getX()-1][cell.getY()]); } catch (ArrayIndexOutOfBoundsException e) {}
 			
 			// South
-			try { effectCell(player, this.players, cell, board[cell.getX()+1][cell.getY()]); } catch (ArrayIndexOutOfBoundsException e) {}
+			try { effectCell(player, this.players, cell, this.board[cell.getX()+1][cell.getY()]); } catch (ArrayIndexOutOfBoundsException e) {}
 			
 			// East
-			try { effectCell(player, this.players, cell, board[cell.getX()][cell.getY()+1]); } catch (ArrayIndexOutOfBoundsException e) {}
+			try { effectCell(player, this.players, cell, this.board[cell.getX()][cell.getY()+1]); } catch (ArrayIndexOutOfBoundsException e) {}
 			
 			// West
-			try { effectCell(player, this.players, cell, board[cell.getX()][cell.getY()-1]); } catch (ArrayIndexOutOfBoundsException e) {}
+			try { effectCell(player, this.players, cell, this.board[cell.getX()][cell.getY()-1]); } catch (ArrayIndexOutOfBoundsException e) {}
 			
 		}
 		
 		private void effectCell(Player me, List<Player> players, Cell myCell, Cell otherCell) {
 			Army myArmy = (Army) myCell.getCharacter();
 			Army otherArmy = (Army) otherCell.getCharacter();
-			
-			// if enemy army is smaller than deployed army enemie's size is reduced to half
-			if ((!me.getCharacters().contains(otherArmy)) && otherArmy.getSize() < myArmy.getSize()) {
-				float newSize = (float) (otherArmy.getSize() - otherArmy.getSize() / 2.0);
-				if (newSize < 1) {
-					for (Player p: players) {
-						if (p.getCharacters().contains(otherArmy)) {
-							p.removeCharacter(otherArmy);
+			if (otherArmy != null) {
+				
+				// if enemy army is smaller than deployed army enemie's size is reduced to half
+				if ((!me.getCharacters().contains(otherArmy)) && otherArmy.getSize() < myArmy.getSize()) {
+					float newSize = (float) (otherArmy.getSize() - otherArmy.getSize() / 2.0);
+					if (newSize < 1) {
+						for (Player p: players) {
+							if (p.getCharacters().contains(otherArmy)) {
+								p.removeCharacter(otherArmy);
+							}
 						}
+					} else {
+						otherArmy.setSize((int) newSize);
 					}
-				} else {
-					otherArmy.setSize((int) newSize);
+					
+					myArmy.addGold(2);	
 				}
 				
-				myArmy.addGold(2);	
+				// if friendly army is smaller than deployed army, friendly++ and deployed gold ++
+				else if (me.getCharacters().contains(otherArmy) && otherArmy.getSize() < myArmy.getSize()) {
+					otherArmy.addWarriors(1);
+					myArmy.addGold(1);
+				}
 			}
-			
-			// if friendly army is smaller than deployed army, friendly++ and deployed gold ++
-			else if (me.getCharacters().contains(otherArmy) && otherArmy.getSize() < myArmy.getSize()) {
-				otherArmy.addWarriors(1);
-				myArmy.addGold(1);
-			}
-			
 		}
 		
 		public void collect(Player player) {
 			Resource resource;
 			for (Character c: player.getCharacters()) {
 				resource = c.getCell().getBiome().resource(); 
-				player.addNbResource(resource.toString(), resource.loot());
+				player.addNbResource(resource.toString(), 1);
 			}
 		}
 		
@@ -102,47 +108,38 @@ public class WarGame extends Game {
 		public void distribute(Player player) {
 			WarPlayer p = (WarPlayer) player;
 			int cost;
+			List <Character> ArmiesToRemove = new ArrayList<Character>();
 			for (Character c: player.getCharacters()) {
 				cost = c.cost();
 				if (p.getFood() >= cost) {
 				p.consumeFood(cost);}
 				else {
-					p.removeCharacter(c);
+					ArmiesToRemove.add(c);
 					p.addGold(1);
 				}
 			}
+			for (Character c: ArmiesToRemove) {
+				p.removeCharacter(c);
+			}
+			
 		}
 		
-		public void playOneRound(Player player) {
-			Scanner myScan = new Scanner(System.in);
-			String answer;
-			System.out.print("Deploy ? [y/n]: ");
-			answer = myScan.nextLine();
-			if (answer == "y") {
-				System.out.print("Size of army: ");
-				int size = myScan.nextInt();
-				System.out.print("Cell [X]: ");
-				int x = myScan.nextInt();
-				System.out.print("Cell [Y]: ");
-				int y = myScan.nextInt();	
-				boolean isFree = ( this.board[x][y].isFree() && !this.board[x][y].getBiome().equals(new Ocean()) );
-				while (!isFree) {
-					System.out.print("Case non libre! ");
-					System.out.print("Cell [X]: ");
-					x = myScan.nextInt();
-					System.out.print("Cell [Y]: ");
-					y = myScan.nextInt();	
-					isFree = this.board[x][y].isFree();
+		private boolean checkFull() {
+			Biome ocean = new Ocean();
+			Cell cell;
+			for (int i= 0; i< this.board.length; i++) {
+				for (int j=0; j< this.board[i].length; j++) {
+					cell = this.board[i][j];
+					if (!cell.getBiome().equals(ocean) && cell.isFree()) {
+						return false;
+					}
 				}
-				
-				Character army = new Army(size, board[x][y]);
-				
-				// Deploy !!!!!!!!!!!!!!!!
-				deploy(player, army, board[x][y]);
-				
 			}
-			 // Collect !!!!!!!!!!!!!!!!!
-			collect(player);
+			return true;
+		}
+		private void showResources(Player player) {
+			WarPlayer wp = (WarPlayer) player;
+			System.out.println("You have: "+ wp.getFood() + " food");
 			
 			
 			Map<String, Integer> resources = player.getResources();
@@ -152,70 +149,155 @@ public class WarGame extends Game {
 				System.out.println(k + ") " + key + " : " + resources.get(key));
 				k++;
 			}
+		}
+		
+		private void showArmies(Player p) {
+			System.out.println("Your troops are: ");
+			int t = 1;
+			for (Character c: p.getCharacters()) {
+				System.out.println(t + ") " + c.toString());
+				t++;
+			}
+		}
+		
+		public void playOneRound(Player player) {
+			Scanner myScan = new Scanner(System.in);
+			String answer;
+			WarPlayer wp = (WarPlayer) player;
+			System.out.println("You have: "+ wp.getNbWarriors() + " warriors");
+			//Deploy !!!!!!!!!!!!!!!
+			System.out.print("Deploy ? [y/n]: ");
+			answer = myScan.next();
+			if (answer.equals("y")) {
+				System.out.print("Size of army: ");
+				int size = myScan.nextInt();
+				System.out.print("Cell [X]: ");
+				int x = myScan.nextInt();
+				System.out.print("Cell [Y]: ");
+				int y = myScan.nextInt();	
+				boolean isFree = ( this.board[x][y].isFree() && !this.board[x][y].getBiome().equals(new Ocean()) );
+				while (!isFree) {
+					System.out.print("Cell occupied! ");
+					System.out.print("Cell [X]: ");
+					x = myScan.nextInt();
+					System.out.print("Cell [Y]: ");
+					y = myScan.nextInt();	
+					isFree = this.board[x][y].isFree();
+				}
+				
+				// Army creation
+				Character army = null;
+				boolean created = false;
+				while (!created) {
+					try {
+						army = new Army(size, board[x][y]);
+						created = true;
+					} catch (MaxSizeExceededException e) {
+						System.out.println(e.getMessage());
+						System.out.print("Size of army: ");
+						size = myScan.nextInt();
+					}
+				}
+				
+				
+				// Deploy !!!!!!!!!!!!!!!!
+			    	
+				deploy(player, army, board[x][y]);
+				showArmies(player);
+			}
+			 // Collect !!!!!!!!!!!!!!!!!
+			collect(player);
+			System.out.println("Resources collected!");
+			
+			showResources(player);
+			
 			System.out.print("Convert ? [y/n]: ");
-			answer = myScan.nextLine();
-			boolean haveEnough = false;
+			answer = myScan.next();
+			//System.out.print("answer: "+answer);
+			
+			boolean haveEnough = true;
 			int nbResource;
 			int selectedResource;
 			Resource resource = null;
-			while (answer != "n" || !haveEnough) {
-				System.out.println("Choose resource (int): ");
-				selectedResource = myScan.nextInt();
+			while (!answer.equals("n") || !haveEnough) {
+				System.out.print("Choose resource (int): ");
+				selectedResource = myScan.nextInt() - 1;
 				
 				List<String> listResources = new ArrayList<String>();
 				// a changer !!!!!!!!!!!!
-				listResources.add("Rock"); listResources.add("Sand"); listResources.add("Wheat"); listResources.add("Wood");
+				listResources.add("Rock"); listResources.add("Sand"); listResources.add("Wood"); listResources.add("Wheat");
 				try {
 					listResources.get(selectedResource);
 					switch (selectedResource) {
-					case 1:
+					case 0:
 						resource = new Rock();
 						break;
-					case 2:
+					case 1:
 						resource = new Sand();
+						break;
+					case 2:
+						resource = new Wood();
 						break;
 					case 3:
 						resource = new Wheat();
-						break;
-					case 4:
-						resource = new Wood();
 						break;
 					default:
 						break;
 					}
 				} catch (IndexOutOfBoundsException e) { 
-					System.out.println("Wrong select! ");
+					System.out.println("Wrong selection! ");
 					continue;
 				}
 				
-				System.out.println("Quantity: ");
+				System.out.print("Quantity: ");
 				nbResource = myScan.nextInt();
 				
 				haveEnough = convert(player, resource, nbResource);
 				
+				showResources(player);
 				System.out.print("Convert ? [y/n]: ");
-				answer = myScan.nextLine();
+				answer = myScan.next();
 				
 				
 			    
 			}
 			
-			// Ditribute !!!!!!!!!!
+			// Distribute !!!!!!!!!!
 			distribute(player);
+			System.out.println("Armies fed!\nYou have: " + wp.getFood() + " food left");
 			
-			myScan.close();
+			
 		}
 		
 		public void play() {
-			for (int i=0; i< this.nbRounds; i++) {
-				System.out.println("Round "+ i+1 + " : ");
+			
+			Resource Rock = new Rock();
+			Resource Sand = new Sand();
+			Resource Wheat = new Wheat();
+			Resource Wood = new Wood();
+			for (Player p: this.players) {
+				 p.initResource(Rock.toString());
+				 p.initResource(Sand.toString());
+				 p.initResource(Wheat.toString());
+				 p.initResource(Wood.toString());
+			}
+			
+			int i = 0;
+			while (i< this.nbRounds && !checkFull()) {
+				int j = i+1;
+				System.out.println("Round "+ j + " : ");
 				for (Player p: this.players) {
+					System.out.println("\n########### " + p.getName() + " turn ###########");
+					showArmies(p);
 					playOneRound(p);
-				}	
+				}
+				
+				i++;
 			}
 			List<Player> winners = winners();
 			for (Player w: winners) {
-				System.out.println("Score: "+w.calculateScore());
+				System.out.println("The winner is: " + w.getName());
+				System.out.println("Score: "+ w.calculateScore());
 			}
 			
 			

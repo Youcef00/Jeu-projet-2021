@@ -19,7 +19,11 @@ public class Ocean implements Biome {
 	}
 	
 	public int score() {
-		return SCORE;
+		return this.SCORE;
+	}
+	
+	public String toString() {
+		return "Ocean";
 	}
 	
 	public boolean equals(Object o) {

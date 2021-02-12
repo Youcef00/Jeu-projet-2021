@@ -19,7 +19,11 @@ public class Mountain implements Biome {
 	}
 	
 	public int score() {
-		return SCORE;
+		return this.SCORE;
+	}
+	
+	public String toString() {
+		return "Mountain";
 	}
 	
 	public boolean equals(Object o) {
