@@ -10,7 +10,7 @@ public class Desert implements Biome {
 	
 	public Desert() {
 		this.RESOURCE = new Sand();
-		this.SCORE = 0;
+		this.SCORE = 2;
 	}
 	
 	public Resource resource() {

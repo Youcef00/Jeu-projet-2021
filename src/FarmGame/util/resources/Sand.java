@@ -1,6 +1,7 @@
 package FarmGame.util.resources;
 
 import Game.util.Resource;
+
 public class Sand implements Resource {
 
 

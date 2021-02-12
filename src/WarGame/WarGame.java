@@ -164,6 +164,7 @@ public class WarGame extends Game {
 			Scanner myScan = new Scanner(System.in);
 			String answer;
 			WarPlayer wp = (WarPlayer) player;
+			showArmies(player);
 			System.out.println("You have: "+ wp.getNbWarriors() + " warriors");
 			//Deploy !!!!!!!!!!!!!!!
 			System.out.print("Deploy ? [y/n]: ");
@@ -192,7 +193,7 @@ public class WarGame extends Game {
 					try {
 						army = new Army(size, board[x][y]);
 						created = true;
-					} catch (MaxSizeExceededException e) {
+					} catch (ParmsNotCompatibleException e) {
 						System.out.println(e.getMessage());
 						System.out.print("Size of army: ");
 						size = myScan.nextInt();
@@ -211,6 +212,7 @@ public class WarGame extends Game {
 			
 			showResources(player);
 			
+			// Convert !!!!!!!!!!!!!!!!!!
 			System.out.print("Convert ? [y/n]: ");
 			answer = myScan.next();
 			//System.out.print("answer: "+answer);
@@ -285,10 +287,9 @@ public class WarGame extends Game {
 			int i = 0;
 			while (i< this.nbRounds && !checkFull()) {
 				int j = i+1;
-				System.out.println("Round "+ j + " : ");
+				System.out.print("\n##############################\n#           Round "+j+"          #\n##############################\n\n");
 				for (Player p: this.players) {
-					System.out.println("\n########### " + p.getName() + " turn ###########");
-					showArmies(p);
+					System.out.println("########### " + p.getName() + " turn ###########");
 					playOneRound(p);
 				}
 				

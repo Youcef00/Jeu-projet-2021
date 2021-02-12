@@ -11,7 +11,7 @@ public class Forest implements Biome {
 	
 	public Forest() {
 		this.RESOURCE = new Wood();
-		this.SCORE = 0;
+		this.SCORE = 1;
 	}
 	
 	public Resource resource() {

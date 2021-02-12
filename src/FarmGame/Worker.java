@@ -2,13 +2,22 @@ package FarmGame;
 
 import Game.*;
 import Game.util.Biome;
+import Game.util.ParmsNotCompatibleException;
 import Game.Character;
 import FarmGame.util.biomes.*;
 
 public class Worker extends Character {
 
-	public Worker(Cell cell) {
+	public Worker(Cell cell) throws ParmsNotCompatibleException {
 		super(0, cell);
+		checkBiome(cell);
+	}
+	
+	private void checkBiome(Cell cell) throws ParmsNotCompatibleException{
+		Biome ocean = new Ocean();
+		if (cell.getBiome().equals(ocean)) {
+			throw new ParmsNotCompatibleException("Can't deploy in ocean!");
+		}
 	}
 	
 	public boolean equals(Object o) {
@@ -22,7 +31,7 @@ public class Worker extends Character {
 	}
 	
 	public String toString() {
-		return "Worker: " + this.nbGold + " Cell: "+ this.cell.toString();
+		return "Worker: " + this.nbGold + " Gold. Cell: ["+ this.cell.toString()+"]";
 	}
 	
 	public int cost() {

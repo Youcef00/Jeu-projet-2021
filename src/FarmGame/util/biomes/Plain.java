@@ -11,7 +11,7 @@ public class Plain implements Biome {
 	
 	public Plain() {
 		this.RESOURCE = new Wheat();
-		this.SCORE = 0;
+		this.SCORE = 1;
 	}
 	
 	public Resource resource() {

@@ -10,18 +10,18 @@ public class Army extends Character {
 	private int size;
 	private final int MAX_WARRIORS;
 	
-	public Army(int size, Cell cell) throws MaxSizeExceededException{
+	public Army(int size, Cell cell) throws ParmsNotCompatibleException{
 		super(0, cell);
 		this.MAX_WARRIORS = 5;
 		checkBiome(cell, size);
 	}
 	
-	private void checkBiome(Cell cell, int size) throws MaxSizeExceededException{
+	private void checkBiome(Cell cell, int size) throws ParmsNotCompatibleException{
 		Biome mountain = new Mountain();
 		Biome desert = new Desert();
 		Biome ocean = new Ocean();
 		if (cell.getBiome().equals(ocean)) {
-			throw new MaxSizeExceededException("Can't put army in Ocean biome!");
+			throw new ParmsNotCompatibleException("Can't put army in Ocean biome!");
 		}
 		else if (cell.getBiome().equals(mountain) && size <= 3) {
 			this.size += size + 2;
@@ -30,10 +30,10 @@ public class Army extends Character {
 			}
 		}
 		else if ((cell.getBiome().equals(mountain) || cell.getBiome().equals(desert)) && size > 3){
-			throw new MaxSizeExceededException("The biome " + cell.getBiome().toString() + " does not support this size! (max is 3)");
+			throw new ParmsNotCompatibleException("The biome " + cell.getBiome().toString() + " does not support this size! (max is 3)");
 		}
 		else if (size > this.MAX_WARRIORS) {
-			throw new MaxSizeExceededException("Max Warriors Exceeded no more than "+this.MAX_WARRIORS+" warriors");
+			throw new ParmsNotCompatibleException("Max Warriors Exceeded no more than "+this.MAX_WARRIORS+" warriors");
 		}
 		else {
 			this.size = size;
@@ -42,7 +42,9 @@ public class Army extends Character {
 	
 	public void addWarriors(int warriors) {
 		this.size += warriors;
-		this.size %= this.MAX_WARRIORS;
+		if (this.size > this.MAX_WARRIORS) {
+			this.size = this.MAX_WARRIORS;
+		}
 	}
 
 	public int getSize() {
@@ -51,6 +53,9 @@ public class Army extends Character {
 	
 	public void setSize(int newSize) {
 		this.size = newSize;
+		if (this.size > this.MAX_WARRIORS) {
+			this.size = this.MAX_WARRIORS;
+		}
 	}
 	
 	public boolean equals(Object o) {
