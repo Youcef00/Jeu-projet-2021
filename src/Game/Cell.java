@@ -28,7 +28,6 @@ public class Cell {
 		return this.y;
 	}
 	
-	// ATTENTION !!!!!!!!!!
 	public Character getCharacter() {
 		return this.character;
 	}
@@ -41,6 +40,9 @@ public class Cell {
 		this.character = character;
 	}
 	
+	public void setBiome(Biome biome) {
+		this.biome = biome;
+	}
 	public boolean isFree() {
 		return this.character == null;
 	}

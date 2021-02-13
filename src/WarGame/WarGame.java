@@ -7,33 +7,49 @@ import Game.util.*;
 import Game.util.Resource;
 import WarGame.util.biomes.*;
 import WarGame.util.resources.*;
-import java.util.Scanner;
 
 public class WarGame extends Game {
 
-		public WarGame(List<Player> players, int nbRounds) {
-			super(players, nbRounds);
-			this.setBoard();
+		public WarGame(List<Player> players, int nbRounds, int width, int height) {
+			super(players, nbRounds, width, height);
 		}
 		
-		public void setBoard() {
+		public void setBoard(int width, int height) {
+			Random random = new Random();
+			
 			Biome mountain = new Mountain();
 			Biome desert = new Desert();
 			Biome forest = new Forest();
 			Biome ocean = new Ocean();
 			Biome plain = new Plain();
 			
-			this.board = new Cell[][] 
-			{{new Cell(0,0, ocean),new Cell(0,1, ocean),new Cell(0,2, ocean),new Cell(0,3, ocean),new Cell(0,4, plain),new Cell(0,5, desert),new Cell(0,6, ocean)},
-			 {new Cell(1,0, ocean),new Cell(1,1, forest),new Cell(1,2, mountain),new Cell(1,3, ocean),new Cell(1,4, plain),new Cell(1,5, plain),new Cell(1,6, ocean)},
-			 {new Cell(2,0, ocean),new Cell(2,1, ocean),new Cell(2,2, ocean),new Cell(2,3, ocean),new Cell(2,4, ocean),new Cell(2,5, ocean),new Cell(2,6, ocean)},
-			 {new Cell(3,0, ocean),new Cell(3,1, plain),new Cell(3,2, mountain),new Cell(3,3, plain),new Cell(3,4, desert),new Cell(3,5, ocean),new Cell(3,6, ocean)},
-			 {new Cell(4,0, ocean),new Cell(4,1, forest),new Cell(4,2, plain),new Cell(4,3, plain),new Cell(4,4, desert),new Cell(4,5, ocean),new Cell(4,6, ocean)},
-			 {new Cell(5,0, ocean),new Cell(5,1, ocean),new Cell(5,2, ocean),new Cell(5,3, ocean),new Cell(5,4, ocean),new Cell(5,5, ocean),new Cell(5,6, ocean)}
-			};
+			Biome[] biomes = new Biome[] {mountain, desert, forest, plain};
+			
+			// init the board
+			Cell[][] board = new Cell[height][width];
+			for (int i=0; i<board.length; i++) {
+				for (int j=0; j<board[i].length; j++) {
+					board[i][j] = new Cell(i, j, ocean);
+				}
+			}
+			
+			int i =0;
+			int randomInteger;
+			int nonOcean = (width*height)/3;
+			
+			while (nonOcean > 0) {
+				// Set random desert
+				randomInteger = random.nextInt(width);
+				board[i][randomInteger].setBiome(biomes[random.nextInt(biomes.length)]);
+				try { board[i][randomInteger+1].setBiome(biomes[random.nextInt(biomes.length)]); } catch (ArrayIndexOutOfBoundsException e) { board[i][randomInteger - 1].setBiome(biomes[random.nextInt(biomes.length)]); }
+				nonOcean -= 2;
+				i++;
+				i %= height;
+			}
+			this.board = board;
 		}
 		
-		//Reviens  Armé desert max 3
+		
 		public void deploy(Player player, Character character, Cell cell) {
 			player.addCharacter(character);
 			Army a = (Army) character;
@@ -137,6 +153,32 @@ public class WarGame extends Game {
 			}
 			return true;
 		}
+		
+		private void showBoard() {
+			System.out.print("    ");
+			for (int i=0; i<this.board.length; i++) {
+				System.out.print(i+ "   ");
+			}
+		
+			System.out.print("\n");
+			String biome;
+			for (int i=0; i<this.board.length; i++) {
+				System.out.print(i+ " |");
+				for (int j=0; j<this.board[i].length; j++) {
+					biome = String.valueOf(this.board[i][j].getBiome().toString().charAt(0)) ;
+					if (!biome.equals("O")) {
+						System.out.print("["+ biome + "]|");
+					}
+					else {
+						System.out.print(" "+ biome + " |");
+					}
+					
+				}
+				System.out.print("\n");
+			}
+			System.out.print("\n");
+		}
+		
 		private void showResources(Player player) {
 			WarPlayer wp = (WarPlayer) player;
 			System.out.println("You have: "+ wp.getFood() + " food");
@@ -161,28 +203,29 @@ public class WarGame extends Game {
 		}
 		
 		public void playOneRound(Player player) {
-			Scanner myScan = new Scanner(System.in);
+			
 			String answer;
 			WarPlayer wp = (WarPlayer) player;
+			showBoard();
 			showArmies(player);
 			System.out.println("You have: "+ wp.getNbWarriors() + " warriors");
 			//Deploy !!!!!!!!!!!!!!!
 			System.out.print("Deploy ? [y/n]: ");
-			answer = myScan.next();
+			answer = Input.YNString();
 			if (answer.equals("y")) {
 				System.out.print("Size of army: ");
-				int size = myScan.nextInt();
+				int size = Input.readInt();
 				System.out.print("Cell [X]: ");
-				int x = myScan.nextInt();
+				int x = Input.readInt();
 				System.out.print("Cell [Y]: ");
-				int y = myScan.nextInt();	
+				int y = Input.readInt();	
 				boolean isFree = ( this.board[x][y].isFree() && !this.board[x][y].getBiome().equals(new Ocean()) );
 				while (!isFree) {
 					System.out.print("Cell occupied! ");
 					System.out.print("Cell [X]: ");
-					x = myScan.nextInt();
+					x = Input.readInt();
 					System.out.print("Cell [Y]: ");
-					y = myScan.nextInt();	
+					y = Input.readInt();	
 					isFree = this.board[x][y].isFree();
 				}
 				
@@ -196,7 +239,7 @@ public class WarGame extends Game {
 					} catch (ParmsNotCompatibleException e) {
 						System.out.println(e.getMessage());
 						System.out.print("Size of army: ");
-						size = myScan.nextInt();
+						size = Input.readInt();
 					}
 				}
 				
@@ -214,7 +257,7 @@ public class WarGame extends Game {
 			
 			// Convert !!!!!!!!!!!!!!!!!!
 			System.out.print("Convert ? [y/n]: ");
-			answer = myScan.next();
+			answer = Input.YNString();
 			//System.out.print("answer: "+answer);
 			
 			boolean haveEnough = true;
@@ -223,7 +266,7 @@ public class WarGame extends Game {
 			Resource resource = null;
 			while (!answer.equals("n") || !haveEnough) {
 				System.out.print("Choose resource (int): ");
-				selectedResource = myScan.nextInt() - 1;
+				selectedResource = Input.readInt() - 1;
 				
 				List<String> listResources = new ArrayList<String>();
 				// a changer !!!!!!!!!!!!
@@ -252,13 +295,13 @@ public class WarGame extends Game {
 				}
 				
 				System.out.print("Quantity: ");
-				nbResource = myScan.nextInt();
+				nbResource = Input.readInt();
 				
 				haveEnough = convert(player, resource, nbResource);
 				
 				showResources(player);
 				System.out.print("Convert ? [y/n]: ");
-				answer = myScan.next();
+				answer = Input.YNString();
 				
 				
 			    
