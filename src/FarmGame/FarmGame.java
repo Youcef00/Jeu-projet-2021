@@ -88,7 +88,7 @@ public class FarmGame extends Game {
 
 	public boolean convert(Player player, Resource resource, int nbResource) {
 		if (player.getNbResource(resource.toString()) >= nbResource) {
-			player.addGold(resource.loot());
+			player.addGold(resource.loot()*nbResource);
 			player.addNbResource(resource.toString(), -nbResource);
 			return true;
 		}
@@ -210,7 +210,7 @@ public class FarmGame extends Game {
 			boolean isFree;
 			try { isFree = (this.board[x][y].isFree() && !this.board[x][y].getBiome().equals(new Ocean()) );} catch (ArrayIndexOutOfBoundsException e) {isFree = false;}
 			while (!isFree) {
-				System.out.print("Cell occupied! ");
+				System.out.println("Cell occupied! ");
 				System.out.print("Cell [X]: ");
 				x = Input.readInt();
 				System.out.print("Cell [Y]: ");
@@ -329,6 +329,9 @@ public class FarmGame extends Game {
 		for (Player w: winners) {
 			System.out.println("The winner is: " + w.getName());
 			System.out.println("Score: "+ w.calculateScore());
+		}
+		for (Player p: this.players) {
+			System.out.println("Score de "+p.getName()+": "+p.calculateScore());
 		}
 	}
 

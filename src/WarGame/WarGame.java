@@ -360,6 +360,9 @@ public class WarGame extends Game {
 				System.out.println("The winner is: " + w.getName());
 				System.out.println("Score: "+ w.calculateScore());
 			}
+			for (Player p: this.players) {
+				System.out.println("Score de "+p.getName()+": "+p.calculateScore());
+			}
 			
 			
 		}
