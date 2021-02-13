@@ -50,13 +50,20 @@ public class FarmGame extends Game {
 		int i =0;
 		int randomInteger;
 		int nonOcean = (width*height)/3;
-		
+		Biome biome = null;
+		Biome biomeNext = null;
+
 		while (nonOcean > 0) {
 			// Set random desert
 			randomInteger = random.nextInt(width);
-			board[i][randomInteger].setBiome(biomes[random.nextInt(biomes.length)]);
-			try { board[i][randomInteger+1].setBiome(biomes[random.nextInt(biomes.length)]); } catch (ArrayIndexOutOfBoundsException e) { board[i][randomInteger - 1].setBiome(biomes[random.nextInt(biomes.length)]); }
-			nonOcean -= 2;
+			try { biome = board[i][randomInteger].getBiome(); biomeNext = board[i][randomInteger+1].getBiome(); } catch (ArrayIndexOutOfBoundsException e) { biomeNext = board[i][randomInteger-1].getBiome();}
+			if (biome.equals(ocean) && biomeNext.equals(ocean)) {
+				board[i][randomInteger].setBiome(biomes[random.nextInt(biomes.length)]);
+				try { board[i][randomInteger+1].setBiome(biomes[random.nextInt(biomes.length)]); } catch (ArrayIndexOutOfBoundsException e) { board[i][randomInteger - 1].setBiome(biomes[random.nextInt(biomes.length)]); }
+				nonOcean -= 2;					
+			}
+			
+			
 			i++;
 			i %= height;
 		}
