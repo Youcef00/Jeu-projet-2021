@@ -130,7 +130,7 @@ public class FarmGame extends Game {
 	
 	private void showBoard() {
 		System.out.print("     ");
-		for (int i=0; i<this.board.length; i++) {
+		for (int i=0; i<this.board[0].length; i++) {
 			if (i< 10) {System.out.print(i+ "   ");}
 			else {System.out.print(i+ "  ");}
 		}
@@ -241,7 +241,7 @@ public class FarmGame extends Game {
 			int selectedResource;
 			answer = "y";
 			Resource resource = null;
-			while (!answer.equals("n") || !haveEnough) {
+			while (!answer.equals("n") && haveEnough) {
 				System.out.print("Choose resource (int): ");
 				selectedResource = Input.readInt() - 1;
 				

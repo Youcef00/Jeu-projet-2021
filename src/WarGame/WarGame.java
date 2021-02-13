@@ -280,7 +280,7 @@ public class WarGame extends Game {
 			int nbResource;
 			int selectedResource;
 			Resource resource = null;
-			while (!answer.equals("n") || !haveEnough) {
+			while (!answer.equals("n") && haveEnough) {
 				System.out.print("Choose resource (int): ");
 				selectedResource = Input.readInt() - 1;
 				
