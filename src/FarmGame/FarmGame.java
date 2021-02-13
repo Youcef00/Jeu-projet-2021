@@ -201,14 +201,15 @@ public class FarmGame extends Game {
 			int x = Input.readInt();
 			System.out.print("Cell [Y]: ");
 			int y = Input.readInt();
-			boolean isFree = ( this.board[x][y].isFree() && !this.board[x][y].getBiome().equals(new Ocean()) );
+			boolean isFree;
+			try { isFree = (this.board[x][y].isFree() && !this.board[x][y].getBiome().equals(new Ocean()) );} catch (ArrayIndexOutOfBoundsException e) {isFree = false;}
 			while (!isFree) {
 				System.out.print("Cell occupied! ");
 				System.out.print("Cell [X]: ");
 				x = Input.readInt();
 				System.out.print("Cell [Y]: ");
 				y = Input.readInt();	
-				isFree = this.board[x][y].isFree();
+				try { isFree = (this.board[x][y].isFree() && !this.board[x][y].getBiome().equals(new Ocean()) );} catch (ArrayIndexOutOfBoundsException e) {continue;}
 			}
 			// Army creation
 			Character worker = null;

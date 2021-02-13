@@ -13,10 +13,13 @@ public class Input {
 			while (!correctAnswer) {
 				try {
 					answer = myScan.nextInt();
+					if (answer < 0 ) {
+						throw new InputMismatchException();
+					}
 					correctAnswer = true;
 				} catch (InputMismatchException e) {
-					System.out.print("Wrong! Please insert Integer: ");
-					myScan.next();
+					System.out.print("Wrong! Please insert a valid Integer: ");
+					myScan.nextLine();
 					continue;
 				}
 			}
@@ -35,7 +38,7 @@ public class Input {
 					correctAnswer = true;
 				} catch (InputMismatchException e) {
 					System.out.print("Wrong! Please insert [y/n]: ");
-					myScan.next();
+					myScan.nextLine();
 					continue;
 				}
 			}
@@ -51,7 +54,7 @@ public class Input {
 					correctAnswer = true;
 				} catch (InputMismatchException e) {
 					System.out.print("Wrong! Please insert String: ");
-					myScan.next();
+					myScan.nextLine();
 					continue;
 				}
 			}

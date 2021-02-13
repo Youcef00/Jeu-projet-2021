@@ -226,14 +226,16 @@ public class WarGame extends Game {
 				int x = Input.readInt();
 				System.out.print("Cell [Y]: ");
 				int y = Input.readInt();	
-				boolean isFree = ( this.board[x][y].isFree() && !this.board[x][y].getBiome().equals(new Ocean()) );
+				boolean isFree; 
+				try { isFree = ( this.board[x][y].isFree() && !this.board[x][y].getBiome().equals(new Ocean()) ); }catch (ArrayIndexOutOfBoundsException e) { isFree = false;}
 				while (!isFree) {
-					System.out.print("Cell occupied! ");
+					System.out.println("Cell occupied! ");
 					System.out.print("Cell [X]: ");
 					x = Input.readInt();
 					System.out.print("Cell [Y]: ");
 					y = Input.readInt();	
-					isFree = this.board[x][y].isFree();
+					try { isFree = ( this.board[x][y].isFree() && !this.board[x][y].getBiome().equals(new Ocean()) ); }catch (ArrayIndexOutOfBoundsException e) { continue;}
+					
 				}
 				
 				// Army creation
@@ -241,13 +243,16 @@ public class WarGame extends Game {
 				boolean created = false;
 				while (!created) {
 					try {
+						if (size == 0) {
+							throw new ParmsNotCompatibleException("Size 0 is not accepted!");
+						}
 						army = new Army(size, board[x][y]);
 						created = true;
 					} catch (ParmsNotCompatibleException e) {
 						System.out.println(e.getMessage());
 						System.out.print("Size of army: ");
 						size = Input.readInt();
-					}
+					} 
 				}
 				
 				
@@ -309,6 +314,7 @@ public class WarGame extends Game {
 				showResources(player);
 				System.out.print("Convert ? [y/n]: ");
 				answer = Input.YNString();
+				
 				
 				
 			    
