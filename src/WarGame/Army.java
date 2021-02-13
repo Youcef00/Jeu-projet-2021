@@ -20,20 +20,23 @@ public class Army extends Character {
 		Biome mountain = new Mountain();
 		Biome desert = new Desert();
 		Biome ocean = new Ocean();
-		if (cell.getBiome().equals(ocean)) {
+		if (size <= 0) {
+			throw new ParmsNotCompatibleException("Size 0 or lower is not accepted!");
+		}
+		else if (cell.getBiome().equals(ocean)) {
 			throw new ParmsNotCompatibleException("Can't put army in Ocean biome!");
+		}
+		else if (size > this.MAX_WARRIORS) {
+			throw new ParmsNotCompatibleException("Max Warriors Exceeded no more than "+this.MAX_WARRIORS+" warriors");
+		}
+		else if ((cell.getBiome().equals(mountain) || cell.getBiome().equals(desert)) && size > 3){
+			throw new ParmsNotCompatibleException("The biome " + cell.getBiome().toString() + " does not support this size! (max is 3)");
 		}
 		else if (cell.getBiome().equals(mountain) && size <= 3) {
 			this.size += size + 2;
 			if (this.size > this.MAX_WARRIORS) {
 				this.size = this.MAX_WARRIORS;
 			}
-		}
-		else if ((cell.getBiome().equals(mountain) || cell.getBiome().equals(desert)) && size > 3){
-			throw new ParmsNotCompatibleException("The biome " + cell.getBiome().toString() + " does not support this size! (max is 3)");
-		}
-		else if (size > this.MAX_WARRIORS) {
-			throw new ParmsNotCompatibleException("Max Warriors Exceeded no more than "+this.MAX_WARRIORS+" warriors");
 		}
 		else {
 			this.size = size;

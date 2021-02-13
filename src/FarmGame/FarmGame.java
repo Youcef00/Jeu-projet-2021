@@ -137,7 +137,12 @@ public class FarmGame extends Game {
 		System.out.print("\n");
 		String biome;
 		for (int i=0; i<this.board.length; i++) {
-			System.out.print(i+ " |");
+			if (i<10) {
+				System.out.print(i+ "  |");
+			}
+			else {
+				System.out.print(i+ " |");
+			}
 			for (int j=0; j<this.board[i].length; j++) {
 				biome = String.valueOf(this.board[i][j].getBiome().toString().charAt(0)) ;
 				if (!biome.equals("O")) {

@@ -170,7 +170,13 @@ public class WarGame extends Game {
 			System.out.print("\n");
 			String biome;
 			for (int i=0; i<this.board.length; i++) {
-				System.out.print(i+ " |");
+				if (i<10) {
+					System.out.print(i+ "  |");
+				}
+				else {
+					System.out.print(i+ " |");
+				}
+				
 				for (int j=0; j<this.board[i].length; j++) {
 					biome = String.valueOf(this.board[i][j].getBiome().toString().charAt(0)) ;
 					if (!biome.equals("O")) {
@@ -243,9 +249,6 @@ public class WarGame extends Game {
 				boolean created = false;
 				while (!created) {
 					try {
-						if (size == 0) {
-							throw new ParmsNotCompatibleException("Size 0 is not accepted!");
-						}
 						army = new Army(size, board[x][y]);
 						created = true;
 					} catch (ParmsNotCompatibleException e) {
