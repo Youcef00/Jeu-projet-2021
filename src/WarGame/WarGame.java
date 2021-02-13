@@ -163,7 +163,7 @@ public class WarGame extends Game {
 		
 		private void showBoard() {
 			System.out.print("     ");
-			for (int i=0; i<this.board.length; i++) {
+			for (int i=0; i<this.board[0].length; i++) {
 				if (i< 10) {System.out.print(i+ "   ");}
 				else {System.out.print(i+ "  ");}
 			}
