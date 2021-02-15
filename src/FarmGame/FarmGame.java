@@ -50,13 +50,20 @@ public class FarmGame extends Game {
 		int i =0;
 		int randomInteger;
 		int nonOcean = (width*height)/3;
-		
+		Biome biome = null;
+		Biome biomeNext = null;
+
 		while (nonOcean > 0) {
 			// Set random desert
 			randomInteger = random.nextInt(width);
-			board[i][randomInteger].setBiome(biomes[random.nextInt(biomes.length)]);
-			try { board[i][randomInteger+1].setBiome(biomes[random.nextInt(biomes.length)]); } catch (ArrayIndexOutOfBoundsException e) { board[i][randomInteger - 1].setBiome(biomes[random.nextInt(biomes.length)]); }
-			nonOcean -= 2;
+			try { biome = board[i][randomInteger].getBiome(); biomeNext = board[i][randomInteger+1].getBiome(); } catch (ArrayIndexOutOfBoundsException e) { biomeNext = board[i][randomInteger-1].getBiome();}
+			if (biome.equals(ocean) && biomeNext.equals(ocean)) {
+				board[i][randomInteger].setBiome(biomes[random.nextInt(biomes.length)]);
+				try { board[i][randomInteger+1].setBiome(biomes[random.nextInt(biomes.length)]); } catch (ArrayIndexOutOfBoundsException e) { board[i][randomInteger - 1].setBiome(biomes[random.nextInt(biomes.length)]); }
+				nonOcean -= 2;					
+			}
+			
+			
 			i++;
 			i %= height;
 		}
@@ -81,7 +88,7 @@ public class FarmGame extends Game {
 
 	public boolean convert(Player player, Resource resource, int nbResource) {
 		if (player.getNbResource(resource.toString()) >= nbResource) {
-			player.addGold(resource.loot());
+			player.addGold(resource.loot()*nbResource);
 			player.addNbResource(resource.toString(), -nbResource);
 			return true;
 		}
@@ -122,15 +129,21 @@ public class FarmGame extends Game {
 	}
 	
 	private void showBoard() {
-		System.out.print("    ");
-		for (int i=0; i<this.board.length; i++) {
-			System.out.print(i+ "   ");
+		System.out.print("     ");
+		for (int i=0; i<this.board[0].length; i++) {
+			if (i< 10) {System.out.print(i+ "   ");}
+			else {System.out.print(i+ "  ");}
 		}
 	
 		System.out.print("\n");
 		String biome;
 		for (int i=0; i<this.board.length; i++) {
-			System.out.print(i+ " |");
+			if (i<10) {
+				System.out.print(i+ "  |");
+			}
+			else {
+				System.out.print(i+ " |");
+			}
 			for (int j=0; j<this.board[i].length; j++) {
 				biome = String.valueOf(this.board[i][j].getBiome().toString().charAt(0)) ;
 				if (!biome.equals("O")) {
@@ -194,14 +207,15 @@ public class FarmGame extends Game {
 			int x = Input.readInt();
 			System.out.print("Cell [Y]: ");
 			int y = Input.readInt();
-			boolean isFree = ( this.board[x][y].isFree() && !this.board[x][y].getBiome().equals(new Ocean()) );
+			boolean isFree;
+			try { isFree = (this.board[x][y].isFree() && !this.board[x][y].getBiome().equals(new Ocean()) );} catch (ArrayIndexOutOfBoundsException e) {isFree = false;}
 			while (!isFree) {
-				System.out.print("Cell occupied! ");
+				System.out.println("Cell occupied! ");
 				System.out.print("Cell [X]: ");
 				x = Input.readInt();
 				System.out.print("Cell [Y]: ");
 				y = Input.readInt();	
-				isFree = this.board[x][y].isFree();
+				try { isFree = (this.board[x][y].isFree() && !this.board[x][y].getBiome().equals(new Ocean()) );} catch (ArrayIndexOutOfBoundsException e) {continue;}
 			}
 			// Army creation
 			Character worker = null;
@@ -227,7 +241,7 @@ public class FarmGame extends Game {
 			int selectedResource;
 			answer = "y";
 			Resource resource = null;
-			while (!answer.equals("n") || !haveEnough) {
+			while (!answer.equals("n") && haveEnough) {
 				System.out.print("Choose resource (int): ");
 				selectedResource = Input.readInt() - 1;
 				
@@ -315,6 +329,9 @@ public class FarmGame extends Game {
 		for (Player w: winners) {
 			System.out.println("The winner is: " + w.getName());
 			System.out.println("Score: "+ w.calculateScore());
+		}
+		for (Player p: this.players) {
+			System.out.println("Score de "+p.getName()+": "+p.calculateScore());
 		}
 	}
 
