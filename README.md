@@ -52,7 +52,7 @@ Voici un résume de nos modélisations :
     
 </ul>
 
-Tous ces modélisations, sont accompagnés d'un diagramme __UML__, qui comporte les attribues et les méthodes associées. Vous trouverez ces diagrammes __UML__ dans le dossier `/UML`, puis ouvrer l'un des fichiers dont le format vous convient.
+Tous ces modélisations, sont accompagnés d'un diagramme **UML**, qui comporte les attribues et les méthodes associées. Vous trouverez ces diagrammes __UML__ dans le dossier `/UML`, puis ouvrer l'un des fichiers dont le format vous convient.
 
 Nous avons aussi organisé et codé la plus part de nos classes modélisées. 
 
@@ -84,9 +84,56 @@ Il ne nous reste pas de problèmes non résolu. Il nous reste de finir de compl�
 # Journal de bord
 
 ## Semaine 1
-
+- UML provisoire
+- Classes créees / partielment crées: 
+  - Dans le dossier `Game` :
+	- `Cell`, 
+	- `Character`, classe abstrainte,
+	- `Game`, classe abstrainte,
+	- `Player`, classe abstrainte,
+	- `util/Biome`, interface,
+	- `util/Resource`, interface.
+	
+  - Dans le dossier `FarmeGame` :
+	- `Worker`, hérite de la classe abstraite `Character`,
+	- `util/biomes/Desert`, implémente l'interface `Biome`,
+	- `util/biomes/Forest`, implémente l'interface `Biome`,
+	- `util/biomes/Mountain`, implémente l'interface `Biome`,
+	- `util/biomes/Océan`, implémente l'interface `Biome`,
+	- `util/biomes/Plain`, implémente l'interface `Biome`,
+	- `util/biomes/None`, implémente l'interface `Resouce`,
+	- `util/biomes/Rock`, implémente l'interface `Resouce`,
+	- `util/biomes/Sand`, implémente l'interface `Resouce`,
+	- `util/biomes/Wheat`, implémente l'interface Resouce,
+	- `util/biomes/Wood`, implémente l'interface `Resouce`.
+	
+  - Dans le dossier `WarGame` :
+    - `Army`, hérite de la classe `Character`,
+    - `WarGame`, hérite de la classe `Game`,
+    - WarPlayer, hérite de la classe `Player`,
+    - il possède aussi un dossier `util`, qui suit la meme structure que dans le dossier `FarmeGame`
+	
 ## Semaine 2
-
+- UML correcte,
+- Toutes les classes existantes ont été enrichi d'attributs et de méthodes.
+- Nouvelles classes ajoutées : 
+  - Dans le dossier `Game` :
+    - `util/Input`, permet de gérer les valeurs d'entrées,
+    - `util/ParmsNotCompatibleException`, hérite de la classe `Exception` et permet de lancer une exception concernant la taille d'une troupe sur une case,
+  - Dans le dossier `FarmGame` : 
+    - `FarmGame`, hérite de la classe abstraite `Game`,
+    - `FarmGameMain`, permet de lancer le jeu de `FarmGame`,
+    - `FarmPlayer`, hérite de la classe abstraite `Player`,
+  - Dans le dossier `WarGame` :
+    - `WarGameMain`, permet de lancer le jeu de `WarGame`,
+    - `WarPlayer`, hérite de la classe abstraite `Player`,
+    
+- Corrections de bugs : 
+  - erreur avec la classe `Input`,
+  - erreur de valeurs négatives,
+  - erreur de conversion de ressources dans le jeu `FarmGame`,
+  - erreur d'affichage du plateau de jeu.
+  
 ## Semaine 3
 
 ## Semaine 4
