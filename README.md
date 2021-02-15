@@ -31,7 +31,7 @@ Voici un résume de nos modélisations :
     
 <li>Modélisation d'un joueur :
     	<ul>
-    		<li>La classe <code>Player</code> est une <b>classe abstraine</b> commune à tous les joueurs d'un jeu,</li>
+    		<li>La classe <code>Player</code> est une <b>classe abstraite</b> commune à tous les joueurs d'un jeu,</li>
     		<li>Les classes <code>WarPlayer</code> et <code>FarmPlayer</code> représentent réspectivement les joueurs du jeu de guerre et du jeu de développement agricoleelles, elles héritent de la classe <code>Player</code>,</li>
     	</ul>
     </li>
