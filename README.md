@@ -94,24 +94,24 @@ Il ne nous reste pas de problèmes non résolu. Il nous reste de finir de compl�
 	- `util/Biome`, interface,
 	- `util/Resource`, interface.
 	
-  - Dans le dossier `FarmeGame` :
+  - Dans le dossier `FarmGame` :
 	- `Worker`, hérite de la classe abstraite `Character`,
 	- `util/biomes/Desert`, implémente l'interface `Biome`,
 	- `util/biomes/Forest`, implémente l'interface `Biome`,
 	- `util/biomes/Mountain`, implémente l'interface `Biome`,
-	- `util/biomes/Océan`, implémente l'interface `Biome`,
+	- `util/biomes/Ocean`, implémente l'interface `Biome`,
 	- `util/biomes/Plain`, implémente l'interface `Biome`,
 	- `util/biomes/None`, implémente l'interface `Resouce`,
 	- `util/biomes/Rock`, implémente l'interface `Resouce`,
 	- `util/biomes/Sand`, implémente l'interface `Resouce`,
-	- `util/biomes/Wheat`, implémente l'interface Resouce,
+	- `util/biomes/Wheat`, implémente l'interface `Resouce`,
 	- `util/biomes/Wood`, implémente l'interface `Resouce`.
 	
   - Dans le dossier `WarGame` :
     - `Army`, hérite de la classe `Character`,
     - `WarGame`, hérite de la classe `Game`,
-    - WarPlayer, hérite de la classe `Player`,
-    - il possède aussi un dossier `util`, qui suit la meme structure que dans le dossier `FarmeGame`
+    - `WarPlayer`, hérite de la classe `Player`,
+    - il possède aussi un dossier `util`, qui suit la meme structure que dans le dossier `FarmGame`
 	
 ## Semaine 2
 - UML correcte,
@@ -128,7 +128,7 @@ Il ne nous reste pas de problèmes non résolu. Il nous reste de finir de compl�
     - `WarGameMain`, permet de lancer le jeu de `WarGame`,
     - `WarPlayer`, hérite de la classe abstraite `Player`,
     
-- Corrections de bugs : 
+- Corrections de bugs (Bugs déjà corrigés): 
   - erreur avec la classe `Input`,
   - erreur de valeurs négatives,
   - erreur de conversion de ressources dans le jeu `FarmGame`,
