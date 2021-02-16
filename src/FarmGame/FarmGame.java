@@ -236,12 +236,12 @@ public class FarmGame extends Game {
 		else if (answer.equals("2")) {
 			System.out.println("Convert! ");
 			
-			boolean haveEnough = true;
+			
 			int nbResource;
 			int selectedResource;
 			answer = "y";
 			Resource resource = null;
-			while (!answer.equals("n") && haveEnough) {
+			while (!answer.equals("n")) {
 				System.out.print("Choose resource (int): ");
 				selectedResource = Input.readInt() - 1;
 				
@@ -274,7 +274,9 @@ public class FarmGame extends Game {
 				System.out.print("Quantity: ");
 				nbResource = Input.readInt();
 				
-				haveEnough = convert(player, resource, nbResource);
+				if(!convert(player, resource, nbResource)) {
+					System.out.println("Pas Assez de resources!");
+				}
 				
 				showResources(player);
 				System.out.print("Convert ? [y/n]: ");

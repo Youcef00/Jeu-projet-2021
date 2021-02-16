@@ -276,11 +276,11 @@ public class WarGame extends Game {
 			answer = Input.YNString();
 			//System.out.print("answer: "+answer);
 			
-			boolean haveEnough = true;
+			
 			int nbResource;
 			int selectedResource;
 			Resource resource = null;
-			while (!answer.equals("n") && haveEnough) {
+			while (answer.equals("y")) {
 				System.out.print("Choose resource (int): ");
 				selectedResource = Input.readInt() - 1;
 				
@@ -313,7 +313,9 @@ public class WarGame extends Game {
 				System.out.print("Quantity: ");
 				nbResource = Input.readInt();
 				
-				haveEnough = convert(player, resource, nbResource);
+				if(! convert(player, resource, nbResource)) {
+					System.out.println("Pas Assez de resources!");
+				}
 				
 				showResources(player);
 				System.out.print("Convert ? [y/n]: ");
