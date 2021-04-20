@@ -33,7 +33,7 @@ public class WarGame extends Game {
 				}
 			}
 			
-			int i =0;
+			int i = 0;
 			int randomInteger;
 			int nonOcean = (width*height)/3;
 			Biome biome = null;
@@ -227,12 +227,12 @@ public class WarGame extends Game {
 			System.out.print("Deploy ? [y/n]: ");
 			answer = Input.YNString();
 			if (answer.equals("y")) {
-				System.out.print("Size of army: ");
-				int size = Input.readInt();
 				System.out.print("Cell [X]: ");
 				int x = Input.readInt();
 				System.out.print("Cell [Y]: ");
-				int y = Input.readInt();	
+				int y = Input.readInt();
+				System.out.print("Size of army: ") ;
+				int size = Input.readInt();
 				boolean isFree; 
 				try { isFree = ( this.board[x][y].isFree() && !this.board[x][y].getBiome().equals(new Ocean()) ); }catch (ArrayIndexOutOfBoundsException e) { isFree = false;}
 				while (!isFree) {
