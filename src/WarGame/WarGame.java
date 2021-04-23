@@ -305,59 +305,109 @@ public class WarGame extends Game {
 			showResources(player);
 			
 			// Convert !!!!!!!!!!!!!!!!!!
-			System.out.print("Convert ? [y/n]: ");
-			answer = Input.YNString();
-			//System.out.print("answer: "+answer);
 			
-			
-			int nbResource;
-			int selectedResource;
-			Resource resource = null;
-			while (answer.equals("y")) {
-				System.out.print("Choose resource (int): ");
-				selectedResource = Input.readInt() - 1;
-				
-				List<String> listResources = new ArrayList<String>();
-				// a changer !!!!!!!!!!!!
-				listResources.add("Rock"); listResources.add("Sand"); listResources.add("Wood"); listResources.add("Wheat");
-				try {
-					listResources.get(selectedResource);
-					switch (selectedResource) {
-					case 0:
-						resource = new Rock();
-						break;
-					case 1:
-						resource = new Sand();
-						break;
-					case 2:
-						resource = new Wood();
-						break;
-					case 3:
-						resource = new Wheat();
-						break;
-					default:
-						break;
-					}
-				} catch (IndexOutOfBoundsException e) { 
-					System.out.println("Wrong selection! ");
-					continue;
-				}
-				
-				System.out.print("Quantity: ");
-				nbResource = Input.readInt();
-				
-				if(! convert(player, resource, nbResource)) {
-					System.out.println("Pas Assez de resources!");
-				}
-				
-				showResources(player);
+			boolean haveMultipleResources= false;
+			Set<String> keys = player.getResources().keySet();
+			Iterator<String> it = keys.iterator();
+			int nbResourceTmp= 0;
+			while(it.hasNext()) {
+				System.out.println("it: "+ it);
+				nbResourceTmp += player.getResources().get(it.toString());
+			}
+			if (nbResourceTmp > 1) {
+				haveMultipleResources = true;
 				System.out.print("Convert ? [y/n]: ");
 				answer = Input.YNString();
 				
+				int nbResource;
+				int selectedResource;
+				
+				Resource resource = null;
+				while (answer.equals("y")) {
+					System.out.print("Choose resource (int): ");
+					selectedResource = Input.readInt() - 1;
+					
+					List<String> listResources = new ArrayList<String>();
+					// a changer !!!!!!!!!!!!
+					listResources.add("Rock"); listResources.add("Sand"); listResources.add("Wood"); listResources.add("Wheat");
+					try {
+						listResources.get(selectedResource);
+						switch (selectedResource) {
+						case 0:
+							resource = new Rock();
+							break;
+						case 1:
+							resource = new Sand();
+							break;
+						case 2:
+							resource = new Wood();
+							break;
+						case 3:
+							resource = new Wheat();
+							break;
+						default:
+							break;
+						}
+					} catch (IndexOutOfBoundsException e) { 
+						System.out.println("Wrong selection! ");
+						continue;
+					}
+					
+					System.out.print("Quantity: ");
+					nbResource = Input.readInt();
+					
+					if(! convert(player, resource, nbResource)) {
+						System.out.println("Pas Assez de resources!");
+					}
+					
+					showResources(player);
+					System.out.print("Convert ? [y/n]: ");
+					answer = Input.YNString();
+					
+					
+					
+				    
+				}
 				
 				
-			    
 			}
+			else {
+				answer = "n";
+				it = keys.iterator();
+				String stringResource;
+				Resource resource = null;
+				while(it.hasNext()) {
+					if(player.getResources().get(it) > 0) {
+						stringResource = it.toString();
+						switch (stringResource) {
+						case "Rock":
+							resource = new Rock();
+							break;
+						case "Sand":
+							resource = new Sand();
+							break;
+						case "Wood":
+							resource = new Wood();
+							break;
+						case "Wheat":
+							resource = new Wheat();
+							break;
+						default:
+							break;
+						}
+						convert(player, resource, 1);
+					}
+				}
+				
+			}
+			
+			
+			
+			
+			//System.out.print("answer: "+answer);
+			
+			
+			
 			
 			// Distribute !!!!!!!!!!
 			distribute(player);
