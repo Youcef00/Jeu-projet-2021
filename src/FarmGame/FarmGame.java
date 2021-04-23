@@ -13,6 +13,10 @@ import Game.Character;
 import Game.Game;
 import Game.Player;
 import Game.util.*;
+import WarGame.util.resources.Rock;
+import WarGame.util.resources.Sand;
+import WarGame.util.resources.Wheat;
+import WarGame.util.resources.Wood;
 
 
 
@@ -183,7 +187,6 @@ public class FarmGame extends Game {
 		for (Character c: p.getCharacters()) {
 			System.out.println(t + ") " + c.toString());
 			t++;
-			
 		}
 	}
 
@@ -265,9 +268,23 @@ public class FarmGame extends Game {
 			
 			int nbResource;
 			int selectedResource;
+			
+			boolean haveMultipleResources = false;
+			
+			
+			int nbResourceTmp= 0;
+			for(Map.Entry<String, Integer> r : player.getResources().entrySet()) {
+				
+				nbResourceTmp += player.getResources().get(r.getKey());
+			}
+			
+			
 			answer = "y";
 			Resource resource = null;
-			while (!answer.equals("n")) {
+			while (answer.equals("y")) {
+				if (nbResourceTmp > 1) {
+					haveMultipleResources = true;
+				
 				System.out.print("Choose resource (int): ");
 				selectedResource = Input.readInt() - 1;
 				
@@ -300,13 +317,46 @@ public class FarmGame extends Game {
 				System.out.print("Quantity: ");
 				nbResource = Input.readInt();
 				
-				if(!convert(player, resource, nbResource)) {
-					System.out.println("Pas Assez de resources!");
-				}
+				System.out.print("Quantity: ");
+				nbResource = Input.readInt();
 				
-				showResources(player);
-				System.out.print("Convert ? [y/n]: ");
-				answer = Input.YNString();
+					if(! convert(player, resource, nbResource)) {
+						System.out.println("Pas Assez de resources!");
+					}
+					
+					showResources(player);
+					System.out.print("Convert ? [y/n]: ");
+					answer = Input.YNString();
+				}
+				else {
+					answer = "n";
+					
+					String stringResource;
+					resource = null;
+					for(Map.Entry<String, Integer> r : player.getResources().entrySet()) {
+						if(player.getResources().get(r.getKey()) > 0) {
+							stringResource = r.getKey();
+							switch (stringResource) {
+							case "Rock":
+								resource = new Rock();
+								break;
+							case "Sand":
+								resource = new Sand();
+								break;
+							case "Wood":
+								resource = new Wood();
+								break;
+							case "Wheat":
+								resource = new Wheat();
+								break;
+							default:
+								break;
+							}
+							convert(player, resource, 1);
+						}
+					}
+				}
+			
 				
 				
 			    
