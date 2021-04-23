@@ -307,15 +307,15 @@ public class WarGame extends Game {
 			// Convert !!!!!!!!!!!!!!!!!!
 			
 			boolean haveMultipleResources= false;
-			Set<String> keys = player.getResources().keySet();
-			Iterator<String> it = keys.iterator();
+			
+			
 			int nbResourceTmp= 0;
-			while(it.hasNext()) {
-				System.out.println("it: "+ it);
-				nbResourceTmp += player.getResources().get(it.toString());
+			for(Map.Entry<String, Integer> r : player.getResources().entrySet()) {
+				
+				nbResourceTmp += player.getResources().get(r.getKey());
 			}
-			if (nbResourceTmp > 1) {
-				haveMultipleResources = true;
+			
+				
 				System.out.print("Convert ? [y/n]: ");
 				answer = Input.YNString();
 				
@@ -324,6 +324,9 @@ public class WarGame extends Game {
 				
 				Resource resource = null;
 				while (answer.equals("y")) {
+					if (nbResourceTmp > 1) {
+						haveMultipleResources = true;
+					
 					System.out.print("Choose resource (int): ");
 					selectedResource = Input.readInt() - 1;
 					
@@ -365,41 +368,42 @@ public class WarGame extends Game {
 					answer = Input.YNString();
 					
 					
-					
-				    
-				}
-				
-				
-			}
-			else {
-				answer = "n";
-				it = keys.iterator();
-				String stringResource;
-				Resource resource = null;
-				while(it.hasNext()) {
-					if(player.getResources().get(it) > 0) {
-						stringResource = it.toString();
-						switch (stringResource) {
-						case "Rock":
-							resource = new Rock();
-							break;
-						case "Sand":
-							resource = new Sand();
-							break;
-						case "Wood":
-							resource = new Wood();
-							break;
-						case "Wheat":
-							resource = new Wheat();
-							break;
-						default:
-							break;
+					} 
+					else {
+						answer = "n";
+						
+						String stringResource;
+						resource = null;
+						for(Map.Entry<String, Integer> r : player.getResources().entrySet()) {
+							if(player.getResources().get(r.getKey()) > 0) {
+								stringResource = r.getKey();
+								switch (stringResource) {
+								case "Rock":
+									resource = new Rock();
+									break;
+								case "Sand":
+									resource = new Sand();
+									break;
+								case "Wood":
+									resource = new Wood();
+									break;
+								case "Wheat":
+									resource = new Wheat();
+									break;
+								default:
+									break;
+								}
+								convert(player, resource, 1);
+							}
 						}
-						convert(player, resource, 1);
-					}
-				}
+						
+					} // fin du else
+				    
+				} // fin du while
 				
-			}
+				
+			
+			
 			
 			
 			
@@ -436,6 +440,15 @@ public class WarGame extends Game {
 				for (Player p: this.players) {
 					System.out.println("########### " + p.getName() + " turn ###########");
 					playOneRound(p);
+					
+				}
+				
+				//recap
+				System.out.println("\n##############################\n#           Summary          #\n##############################");
+				for (Player p: this.players) {
+					System.out.println("\n########## "+  p.getName()  +" ##########\n");
+					showArmies(p);
+					showResources(p);
 				}
 				
 				i++;
