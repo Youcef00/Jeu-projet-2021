@@ -183,6 +183,7 @@ public class FarmGame extends Game {
 		for (Character c: p.getCharacters()) {
 			System.out.println(t + ") " + c.toString());
 			t++;
+			
 		}
 	}
 
