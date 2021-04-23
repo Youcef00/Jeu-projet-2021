@@ -62,13 +62,12 @@ public class FarmGame extends Game {
 				try { board[i][randomInteger+1].setBiome(biomes[random.nextInt(biomes.length)]); } catch (ArrayIndexOutOfBoundsException e) { board[i][randomInteger - 1].setBiome(biomes[random.nextInt(biomes.length)]); }
 				nonOcean -= 2;					
 			}
-			
-			
 			i++;
 			i %= height;
 		}
 		this.board = board;
 	}
+	
 
 
 	public void deploy(Player player, Character character, Cell cell) {
@@ -145,7 +144,12 @@ public class FarmGame extends Game {
 				System.out.print(i+ " |");
 			}
 			for (int j=0; j<this.board[i].length; j++) {
-				biome = String.valueOf(this.board[i][j].getBiome().toString().charAt(0)) ;
+				if (this.board[i][j].isFree()) {
+					biome = String.valueOf(this.board[i][j].getBiome().toString().charAt(0)) ;
+				}
+				else {
+					biome = "W";
+				}
 				if (!biome.equals("O")) {
 					System.out.print("["+ biome + "]|");
 				}
@@ -184,6 +188,7 @@ public class FarmGame extends Game {
 
 	public void playOneRound(Player player) {
 		String answer = null;
+		boolean coord = false ;
 		showBoard();
 		showWorkers(player);
 		showResources(player);
@@ -203,18 +208,38 @@ public class FarmGame extends Game {
 		
 		if (answer.equals("1")) {
 			System.out.println("Deploy! ");
-			System.out.print("Cell [X]: ");
-			int x = Input.readInt();
-			System.out.print("Cell [Y]: ");
-			int y = Input.readInt();
+			int x = 0 ;
+			int y = 0 ;
+			while(!coord) {
+				System.out.print("Cell [X]: ");
+				x = Input.readInt();
+				coord = checkCoord(x, 0);
+			}
+			coord = false;
+			
+			while(!coord) {
+				System.out.print("Cell [Y]: ");
+				y = Input.readInt();
+				coord = checkCoord(y, 1);
+			}
+			coord = false;
 			boolean isFree;
 			try { isFree = (this.board[x][y].isFree() && !this.board[x][y].getBiome().equals(new Ocean()) );} catch (ArrayIndexOutOfBoundsException e) {isFree = false;}
 			while (!isFree) {
 				System.out.println("Cell occupied! ");
-				System.out.print("Cell [X]: ");
-				x = Input.readInt();
-				System.out.print("Cell [Y]: ");
-				y = Input.readInt();	
+				while(!coord) {
+					System.out.print("Cell [X]: ");
+					x = Input.readInt();
+					coord = checkCoord(x, 0);
+				}
+				coord = false;
+				while(!coord) {
+					System.out.print("Cell [Y]: ");
+					y = Input.readInt();
+					coord = checkCoord(y, 1);
+				}
+				coord = false;
+				
 				try { isFree = (this.board[x][y].isFree() && !this.board[x][y].getBiome().equals(new Ocean()) );} catch (ArrayIndexOutOfBoundsException e) {continue;}
 			}
 			// Army creation
