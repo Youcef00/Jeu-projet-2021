@@ -179,7 +179,13 @@ public class WarGame extends Game {
 				}
 				
 				for (int j=0; j<this.board[i].length; j++) {
-					biome = String.valueOf(this.board[i][j].getBiome().toString().charAt(0)) ;
+					if (this.board[i][j].isFree()) {
+						biome = String.valueOf(this.board[i][j].getBiome().toString().charAt(0)) ;
+					} 
+					else {
+						biome = "A";
+					}
+					
 					if (!biome.equals("O")) {
 						System.out.print("["+ biome + "]|");
 					}
@@ -216,9 +222,12 @@ public class WarGame extends Game {
 			}
 		}
 		
+		
+		
 		public void playOneRound(Player player) {
 			
 			String answer;
+			boolean coord = false;
 			WarPlayer wp = (WarPlayer) player;
 			showBoard();
 			showArmies(player);
@@ -226,21 +235,45 @@ public class WarGame extends Game {
 			//Deploy !!!!!!!!!!!!!!!
 			System.out.print("Deploy ? [y/n]: ");
 			answer = Input.YNString();
+			
 			if (answer.equals("y")) {
-				System.out.print("Cell [X]: ");
-				int x = Input.readInt();
-				System.out.print("Cell [Y]: ");
-				int y = Input.readInt();
+				int x=0;
+				int y=0;
+				
+				while(!coord) {
+					System.out.print("Cell [X]: ");
+					x = Input.readInt();
+					coord = checkCoord(x, 0);
+				}
+				coord = false;
+				
+				while(!coord) {
+					System.out.print("Cell [Y]: ");
+					y = Input.readInt();
+					coord = checkCoord(y, 1);
+				}
+				coord = false;
+				
 				System.out.print("Size of army: ") ;
 				int size = Input.readInt();
 				boolean isFree; 
 				try { isFree = ( this.board[x][y].isFree() && !this.board[x][y].getBiome().equals(new Ocean()) ); }catch (ArrayIndexOutOfBoundsException e) { isFree = false;}
 				while (!isFree) {
 					System.out.println("Cell occupied! ");
-					System.out.print("Cell [X]: ");
-					x = Input.readInt();
-					System.out.print("Cell [Y]: ");
-					y = Input.readInt();	
+					while(!coord) {
+						System.out.print("Cell [X]: ");
+						x = Input.readInt();
+						coord = checkCoord(x, 0);
+					}
+					coord = false;
+					
+					while(!coord) {
+						System.out.print("Cell [Y]: ");
+						y = Input.readInt();
+						coord = checkCoord(y, 1);
+					}
+					coord = false;
+					
 					try { isFree = ( this.board[x][y].isFree() && !this.board[x][y].getBiome().equals(new Ocean()) ); }catch (ArrayIndexOutOfBoundsException e) { continue;}
 					
 				}

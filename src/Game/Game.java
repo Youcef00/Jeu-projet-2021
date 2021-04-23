@@ -37,6 +37,23 @@ public abstract class Game {
 			return winners;
 		}
 		
+		protected boolean checkCoord(int x, int pos) {
+			try {
+				if (pos == 0) {
+					Cell tmp = this.board[x][0];	
+					return true;
+					}
+				else {
+					Cell tmp = this.board[0][x];
+					return true;
+				}
+				
+			} catch(ArrayIndexOutOfBoundsException e) {
+				System.out.println("Coordinates out of bound!");
+				return false;
+			}
+		}
+		
 		public abstract void setBoard(int width, int height);
 		public abstract void deploy(Player player, Character character, Cell cell);
 		public abstract void collect(Player player);
