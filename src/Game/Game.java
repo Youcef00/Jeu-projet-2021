@@ -36,7 +36,7 @@ public abstract class Game {
 			}
 			return winners;
 		}
-		
+
 		protected boolean checkCoord(int x, int pos) {
 			try {
 				if (pos == 0) {
