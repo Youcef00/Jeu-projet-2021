@@ -38,19 +38,20 @@ public abstract class Game {
 		}
 
 		protected boolean checkCoord(int x, int pos) {
+			Cell tmp ;
 			try {
 				if (pos == 0) {
-					Cell tmp = this.board[x][0];	
-					return true;
+					tmp = this.board[x][0];	
+					return true ;
 					}
 				else {
-					Cell tmp = this.board[0][x];
-					return true;
+					tmp = this.board[0][x];
+					return true ;
 				}
 				
 			} catch(ArrayIndexOutOfBoundsException e) {
 				System.out.println("Coordinates out of bound!");
-				return false;
+				return false ;
 			}
 		}
 		
