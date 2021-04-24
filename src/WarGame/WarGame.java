@@ -306,10 +306,9 @@ public class WarGame extends Game {
 			
 			// Convert !!!!!!!!!!!!!!!!!!
 			
-			boolean haveMultipleResources= false;
+			boolean haveMultipleResources = false;
 			
-			
-			int nbResourceTmp= 0;
+			int nbResourceTmp = 0;
 			for(Map.Entry<String, Integer> r : player.getResources().entrySet()) {
 				
 				nbResourceTmp += player.getResources().get(r.getKey());
@@ -396,28 +395,12 @@ public class WarGame extends Game {
 								convert(player, resource, 1);
 							}
 						}
-						
 					} // fin du else
-				    
 				} // fin du while
 				
-				
-			
-			
-			
-			
-			
-			
-			//System.out.print("answer: "+answer);
-			
-			
-			
-			
 			// Distribute !!!!!!!!!!
 			distribute(player);
 			System.out.println("Armies fed!\nYou have: " + wp.getFood() + " food left");
-			
-			
 		}
 		
 		public void play() {

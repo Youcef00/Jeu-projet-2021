@@ -197,6 +197,7 @@ public class FarmGame extends Game {
 		showWorkers(player);
 		showResources(player);
 		
+		
 		// Choice !!!!!!
 		System.out.print("\n1) Deploy\n2) Convert\n3) Nothing\nYour choice (int): ");
 		boolean goodAnswer = false;
@@ -356,10 +357,6 @@ public class FarmGame extends Game {
 						}
 					}
 				}
-			
-				
-				
-			    
 			}
 		}
 		else {
