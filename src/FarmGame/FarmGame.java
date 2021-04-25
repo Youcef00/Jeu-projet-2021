@@ -13,10 +13,7 @@ import Game.Character;
 import Game.Game;
 import Game.Player;
 import Game.util.*;
-import WarGame.util.resources.Rock;
-import WarGame.util.resources.Sand;
-import WarGame.util.resources.Wheat;
-import WarGame.util.resources.Wood;
+
 
 
 
@@ -231,7 +228,7 @@ public class FarmGame extends Game {
 			boolean isFree;
 			try { isFree = (this.board[x][y].isFree() && !this.board[x][y].getBiome().equals(new Ocean()) );} catch (ArrayIndexOutOfBoundsException e) {isFree = false;}
 			while (!isFree) {
-				System.out.println("Cell occupied! ");
+				System.out.println("Cannot deploy on Ocean or ocuppied cell ");
 				while(!coord) {
 					System.out.print("Cell [X]: ");
 					x = Input.readInt();

@@ -258,7 +258,7 @@ public class WarGame extends Game {
 				boolean isFree; 
 				try { isFree = ( this.board[x][y].isFree() && !this.board[x][y].getBiome().equals(new Ocean()) ); }catch (ArrayIndexOutOfBoundsException e) { isFree = false;}
 				while (!isFree) {
-					System.out.println("Cell occupied! ");
+					System.out.println("Cannot deploy on Ocean or ocuupied cell! ");
 					while(!coord) {
 						System.out.print("Cell [X]: ");
 						x = Input.readInt();

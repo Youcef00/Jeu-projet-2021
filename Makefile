@@ -1,4 +1,4 @@
-all: doc cls 
+all: cls guerre.jar agricole.jar  guerre-multi.jar agricole-multi.jar
 
 cls:
 	
@@ -15,13 +15,20 @@ doc:
 
 
 guerre.jar:
-	cd classes; jar cvfm ../guerre.jar ../manifest-guerre WarGame
-	
+	cd classes; jar cvfm ../jar/guerre.jar ../jar/manifests/manifest-guerre WarGame Game
+
+guerre-multi.jar:
+	cd classes; jar cvfm ../jar/guerre-multi.jar ../jar/manifests/manifest-guerre-multi WarGame Game
+
+agricole-multi.jar:
+	cd classes; jar cvfm ../jar/agricole-multi.jar ../jar/manifests/manifest-agricole-multi FarmGame Game
+		
 agricole.jar:
-	cd classes; jar cvfm ../agricole.jar ../manifest-agricole FarmGame
+	cd classes; jar cvfm ../jar/agricole.jar ../jar/manifests/manifest-agricole FarmGame Game
 	
 
 clean:
+	rm -f jar/*.jar
 	rm -r classes/*
 	rm -r docs/*
 
