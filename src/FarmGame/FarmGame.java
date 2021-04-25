@@ -117,7 +117,7 @@ public class FarmGame extends Game {
 		}
 	}
 	
-	private boolean checkFull() {
+	protected boolean checkFull() {
 		Biome ocean = new Ocean();
 		Cell cell;
 		for (int i= 0; i< this.board.length; i++) {
@@ -131,7 +131,7 @@ public class FarmGame extends Game {
 		return true;
 	}
 	
-	private void showBoard() {
+	protected void showBoard() {
 		System.out.print("     ");
 		for (int i=0; i<this.board[0].length; i++) {
 			if (i< 10) {System.out.print(i+ "   ");}
@@ -167,7 +167,7 @@ public class FarmGame extends Game {
 		System.out.print("\n");
 	}
 	
-	private void showResources(Player player) {
+	protected void showResources(Player player) {
 		
 		System.out.println("You have: "+ player.getGold() + " gold");
 		
@@ -181,7 +181,7 @@ public class FarmGame extends Game {
 		}
 	}
 	
-	private void showWorkers(Player p) {
+	protected void showWorkers(Player p) {
 		System.out.println("Your workers are: ");
 		int t = 1;
 		for (Character c: p.getCharacters()) {
