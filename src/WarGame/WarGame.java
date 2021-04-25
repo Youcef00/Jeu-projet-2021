@@ -4,7 +4,6 @@ import java.util.*;
 import Game.*;
 import Game.Character;
 import Game.util.*;
-import Game.util.Resource;
 import WarGame.util.biomes.*;
 import WarGame.util.resources.*;
 
@@ -224,22 +223,36 @@ public class WarGame extends Game {
 		
 		 private static int getRandomNumberInRange(int min, int max) {
 
-		        if (min >= max) {
-		            throw new IllegalArgumentException("max must be greater than min");
-		        }
+		        
 
 		        Random r = new Random();
 		        return r.nextInt((max - min) + 1) + min;
 		    }
 		 
-		 private static String getRandomElement(List<String> list)
+		 private static String getRandomYN()
 		    {
+			 	List<String> YN = new ArrayList<String>();  YN.add("y"); YN.add("n");
 		        Random rand = new Random();
-		        return list.get(rand.nextInt(list.size()));
+		        return YN.get(rand.nextInt(YN.size()));
 		    }
 		
 		 	
-		 
+		 private Cell getRandomCell() {
+			 List<Cell> avaibleCells = new ArrayList<Cell>();
+			 Cell currentCell;
+			 for(int i=0; i< this.board.length; i++) {
+				 for (int j=0; j< this.board[0].length; j++) {
+					 currentCell = this.board[i][j];
+					 if (currentCell.isFree() && !currentCell.getBiome().equals(new Ocean())) {
+						 avaibleCells.add(currentCell);
+					 }
+				 }
+			 }
+			 Random rand = new Random();
+		     return avaibleCells.get(rand.nextInt(avaibleCells.size()));
+			
+			 
+		 }
 		
 		public void playOneRound(Player player) {
 			
@@ -420,6 +433,14 @@ public class WarGame extends Game {
 			System.out.println("Armies fed!\nYou have: " + wp.getFood() + " food left");
 		}
 		
+		private static int totalNbResources(Player player) {
+			int nbResourceTmp = 0;
+			for(Map.Entry<String, Integer> r : player.getResources().entrySet()) {
+				
+				nbResourceTmp += player.getResources().get(r.getKey());
+			}
+			return nbResourceTmp;
+		}
 		
 		public void playOneRoundRandom(Player player) {
 			String answer;
@@ -431,73 +452,40 @@ public class WarGame extends Game {
 			System.out.println("You have: "+ wp.getNbWarriors() + " warriors");
 			//Deploy !!!!!!!!!!!!!!!
 			System.out.print("Deploy ? [y/n]: ");
-			answer = getRandomElement(answers);
+			answer = getRandomYN();
+			System.out.println(answer);
 			
 			if (answer.equals("y")) {
-				int x=0;
-				int y=0;
 				
-				while(!coord) {
-					System.out.print("Cell [X]: ");
-					x = getRandomNumberInRange(0, this.board.length-1);
-					coord = checkCoord(x, 0);
-				}
-				coord = false;
+				Cell chosenCell = getRandomCell();
+				System.out.println("Cell [X]: "+ chosenCell.getX());
+				System.out.println("Cell [Y]: "+ chosenCell.getY());
 				
-				while(!coord) {
-					System.out.print("Cell [Y]: ");
-					y = getRandomNumberInRange(0, this.board[0].length-1);
-					coord = checkCoord(y, 1);
-				}
-				coord = false;
-				
-				System.out.print("Size of army: ") ;
-				int size = Input.readInt();
-				boolean isFree; 
-				try { isFree = ( this.board[x][y].isFree() && !this.board[x][y].getBiome().equals(new Ocean()) ); }catch (ArrayIndexOutOfBoundsException e) { isFree = false;}
-				while (!isFree) {
-					System.out.println("Cell occupied! ");
-					while(!coord) {
-						System.out.print("Cell [X]: ");
-						x = getRandomNumberInRange(0, this.board.length-1);
-						coord = checkCoord(x, 0);
-					}
-					coord = false;
-					
-					while(!coord) {
-						System.out.print("Cell [Y]: ");
-						y = getRandomNumberInRange(0, this.board[0].length-1);
-						coord = checkCoord(y, 1);
-					}
-					coord = false;
-					
-					try { isFree = ( this.board[x][y].isFree() && !this.board[x][y].getBiome().equals(new Ocean()) ); }catch (ArrayIndexOutOfBoundsException e) { continue;}
-					
-				}
 				
 				// Army creation
-				Character army = null;
-				boolean created = false;
-				while (!created) {
-					try {
-						army = new Army(size, board[x][y]);
-						created = true;
-					} catch (ParmsNotCompatibleException e) {
-						System.out.println(e.getMessage());
+				
+				
+						int size;
 						System.out.print("Size of army: ");
-						if (this.board[x][y].getBiome().equals(new Mountain()) || this.board[x][y].getBiome().equals(new Desert()) ) {
+						if (chosenCell.getBiome().equals(new Mountain()) || chosenCell.getBiome().equals(new Desert()) ) {
 							size = getRandomNumberInRange(1, 3);
+							System.out.println(size);
 						}
 						else {
 							size = getRandomNumberInRange(1, 5);
+							System.out.println(size);
 						}
-					} 
-				}
+					 
+						
+						Character army = null;
+						try {
+							army = new Army(size, chosenCell);
+						} catch (ParmsNotCompatibleException e) { }
 				
 				
 				// Deploy !!!!!!!!!!!!!!!!
 			    	
-				deploy(player, army, board[x][y]);
+				deploy(player, army, chosenCell);
 				showArmies(player);
 			}
 			 // Collect !!!!!!!!!!!!!!!!!
@@ -510,15 +498,12 @@ public class WarGame extends Game {
 			
 			boolean haveMultipleResources = false;
 			
-			int nbResourceTmp = 0;
-			for(Map.Entry<String, Integer> r : player.getResources().entrySet()) {
-				
-				nbResourceTmp += player.getResources().get(r.getKey());
-			}
+			int nbResourceTmp = totalNbResources(player);
 			
 				
 				System.out.print("Convert ? [y/n]: ");
-				answer = getRandomElement(answers);
+				answer = getRandomYN();
+				System.out.println(answer);
 				
 				int nbResource;
 				int selectedResource;
@@ -540,10 +525,11 @@ public class WarGame extends Game {
 						
 					}
 					
-					selectedResource = resourcesToSelect[getRandomNumberInRange(0, )] - 1;
+					selectedResource = resourcesToSelect.get(getRandomNumberInRange(0, resourcesToSelect.size()-1));
+					System.out.println(selectedResource+1);
 					
 					List<String> listResources = new ArrayList<String>();
-					// a changer !!!!!!!!!!!!
+			
 					listResources.add("Rock"); listResources.add("Sand"); listResources.add("Wood"); listResources.add("Wheat");
 					try {
 						listResources.get(selectedResource);
@@ -569,15 +555,25 @@ public class WarGame extends Game {
 					}
 					
 					System.out.print("Quantity: ");
-					nbResource = Input.readInt();
+					nbResource = getRandomNumberInRange(1, player.getNbResource(resource.toString()));
+					System.out.println(nbResource);
 					
 					if(! convert(player, resource, nbResource)) {
 						System.out.println("Pas Assez de resources!");
 					}
 					
 					showResources(player);
-					System.out.print("Convert ? [y/n]: ");
-					answer = Input.YNString();
+					
+					
+					if (nbResourceTmp == 0) {
+						answer = "n";
+					}
+					else {
+						System.out.print("Convert ? [y/n]: ");
+						answer = getRandomYN();
+						System.out.println(answer);
+					}
+					
 					
 					
 					} 
@@ -609,6 +605,7 @@ public class WarGame extends Game {
 							}
 						}
 					} // fin du else
+					nbResourceTmp = totalNbResources(player);
 				} // fin du while
 				
 			// Distribute !!!!!!!!!!
@@ -635,8 +632,8 @@ public class WarGame extends Game {
 				System.out.print("\n##############################\n#           Round "+j+"          #\n##############################\n\n");
 				for (Player p: this.players) {
 					System.out.println("########### " + p.getName() + " turn ###########");
-					playOneRound(p);
-					
+					//playOneRound(p);
+					playOneRoundRandom(p);
 				}
 				
 				//recap
