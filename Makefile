@@ -1,11 +1,12 @@
 all: doc cls 
 
 cls:
-	javac src/Game/*.java -d ../classes
-	javac src/Game/util/*.java -d ../classes
-	javac FarmGame/*.java -d ../classes
-	javac WarGame/*.java -d ../classes
-	javac -classpath tests/*.java
+	
+	cd src; javac Game/*.java -d ../classes
+	cd src; javac WarGame/*.java -d ../classes
+	cd src; javac FarmGame/*.java -d ../classes
+
+	
 
 doc:
 	javadoc -d ../docs -subpackages Game
@@ -13,9 +14,16 @@ doc:
 	javadoc -d ../docs -subpackages WarGame
 
 
+guerre.jar:
+	cd classes; jar cvfm ../guerre.jar ../manifest-guerre WarGame
+	
+agricole.jar:
+	cd classes; jar cvfm ../agricole.jar ../manifest-agricole FarmGame
+	
+
 clean:
-	rm -f classes/*
-	rm -f docs/*
+	rm -r classes/*
+	rm -r docs/*
 
 .PHONY: clean all
 
