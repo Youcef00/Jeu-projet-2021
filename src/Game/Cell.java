@@ -1,6 +1,6 @@
 package Game;
 
-import Game.util.Biome;
+import Game.util.*;
 
 
 public class Cell {
