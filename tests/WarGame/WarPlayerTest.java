@@ -60,28 +60,30 @@ public class WarPlayerTest {
 		assertEquals(p.getFood(), 7) ;
 	}
 	
-	/*@Test
+	@Test
 	public void testAddCharacter() throws ParmsNotCompatibleException {
 		WarPlayer p = new WarPlayer("BARRY") ;
 		Biome biome = new Desert() ;
 		Cell cell = new Cell(2, 3, biome) ;
-		Army a = new Army(4, cell) ;
+		Army a = new Army(2, cell) ;
+		Army a1 = new Army(1, cell) ;
 		
 		assertEquals(p.getCharacters().size(), 0) ;
 		
 		p.addCharacter(a) ;
-		p.addCharacter(a) ;
+		p.addCharacter(a1) ;
 		
 		assertEquals(p.getCharacters().size(), 2) ;
 		assertEquals(p.getCharacters().get(0), a) ;
-	}*/
+	}
 	
-	/*@Test
+	@Test
 	public void testRemoveCharacter() throws ParmsNotCompatibleException {
 		WarPlayer p = new WarPlayer("BARRY") ;
 		Biome biome = new Desert() ;
 		Cell cell = new Cell(2, 3, biome) ;
-		Army a = new Army(4, cell) ;
+		Army a = new Army(2, cell) ;
+		Army a1 = new Army(1, cell) ;
 		
 		assertEquals(p.getCharacters().size(), 0) ;
 		
@@ -95,13 +97,14 @@ public class WarPlayerTest {
 		assertEquals(p.getCharacters().size(), 0) ;
 		
 		p.addCharacter(a) ;
-		p.addCharacter(a) ;
+		p.addCharacter(a1) ;
 		
 		p.removeCharacter(a) ;
 		
 		assertEquals(p.getCharacters().size(), 1) ;
-		assertEquals(p.getCharacters().get(0), a) ;
-	}*/
+		/*assertEquals(p.getCharacters().get(0), a) ;*/
+		assertEquals(p.getCharacters().get(0), a1) ;
+	}
 	
 	
 
