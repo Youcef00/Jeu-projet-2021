@@ -5,6 +5,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import FarmGame.FarmPlayer;
 import FarmGame.util.resources.Sand;
 import Game.Cell;
 import Game.util.Biome;
