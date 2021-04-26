@@ -85,16 +85,19 @@ public class FarmPlayerTest {
 		assertEquals(p.getResources().size(), 2) ;
 	}
 	
-	/*@Test
+	@Test
 	public void testAddNbResource() throws ParmsNotCompatibleException {
 		FarmPlayer p = new FarmPlayer("BARRY") ;
 		Biome biome = new Desert() ;
 		Cell cell = new Cell(2, 5, biome) ;
 		Worker w = new Worker(cell) ;
 		
+		p.initResource("SAND");
 		assertEquals(p.getNbResource("SAND"), 0) ;
 		
 		p.addNbResource("SAND", 2) ;
-	}*/
+	}
 
+	
 }
+
