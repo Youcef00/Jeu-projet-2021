@@ -17,6 +17,9 @@
 
 ## Livrable 1
 
+### Modélisation des personnages : 
+Pour notre modélisation de nos personnages nous avons décidé de créer une **classe abstraite**, <code>Character</code>. Tous les "personnages" d'un jeu devront hériter de cette classe, en respectant bien la construction de la classe. Nous avons choisi cette modélisation pour permettre l'implémentation d'un jeu de tuiles assez facilement. En effet un personnage devra avoir en attribut sa tuile et le nombre d'or. Sa tuile permet de savoir en permanence la position du personnage sur la tuile.
+
 ### Atteinte des objectifs
 
 Voici un résume de nos modélisations : 
@@ -62,6 +65,9 @@ Il nous reste à mettre en place les régles des jeux, la modélisation d'un pla
 
 
 ## Livrable 2
+
+### Modélisation du plateau
+Nous avons opté de générer le plateau dans la class <code>Game</code>, grâce à la méthode <code>setBoard</code>
 
 ### Atteinte des objectifs
 Nous avons atteint notre objectif qui était de finir la conceptualisation du projet. De plus nous avons réussi aussi à coder complétement les différents classes, et réussi à tester les deux jeux. Nous avons apporté quelques corrections de bugs, pour fludifier le jeu et de ne pas recontrer de problème. Nous allons maintemant nous focaliser sur une mise en place d'une interface graphique.
@@ -153,3 +159,6 @@ Il ne nous reste pas de problèmes non résolu. Il nous reste de finir de compl�
 ## Semaine 11
 
 ## Semaine 12
+
+
+## Comment créer un jeu :
