@@ -1,5 +1,6 @@
 package Game;
 
+
 import static org.junit.Assert.*;
 
 import org.junit.Test;
@@ -7,7 +8,9 @@ import org.junit.Test;
 import FarmGame.Worker;
 import Game.util.Biome;
 import Game.util.ParmsNotCompatibleException;
-import WarGame.util.biomes.*;
+import WarGame.util.biomes.Desert;
+import WarGame.util.biomes.Mountain;
+import WarGame.util.biomes.Ocean;
 
 public class CellTest {
 
