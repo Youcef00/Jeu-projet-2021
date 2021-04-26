@@ -29,7 +29,7 @@ public class FarmGameTest {
 	}
 	
 	@Test
-	public void testDeploy( ) throws ParmsNotCompatibleException {
+	public void testDeploy() throws ParmsNotCompatibleException {
 		FarmPlayer p = new FarmPlayer("BARRY") ;
 		List<Player> players = new ArrayList<Player>() ;
 		FarmGame game = new FarmGame(players, 2, 4, 5) ;
