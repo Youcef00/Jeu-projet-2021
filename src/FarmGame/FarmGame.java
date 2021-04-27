@@ -89,7 +89,6 @@ public class FarmGame extends Game {
 	public boolean convert(Player player, Resource resource, int nbResource) {
 		if (player.getNbResource(resource.toString()) >= nbResource) {
 			player.addGold(resource.loot()*nbResource);
-			System.out.println(player.getGold());
 			player.addNbResource(resource.toString(), -nbResource);
 			return true;
 		}

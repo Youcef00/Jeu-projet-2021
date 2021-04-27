@@ -10,7 +10,7 @@ import org.junit.Test;
 import FarmGame.util.resources.*;
 import Game.* ;
 import Game.util.*;
-import WarGame.util.biomes.*;
+import FarmGame.util.biomes.*;
 
 public class FarmGameTest {
 
@@ -115,23 +115,9 @@ public class FarmGameTest {
 		assertEquals(p.getNbResource(r.toString()), 3) ;
 		boolean res = game.convert(p, r, nbResource) ;
 		assertTrue(res) ;
-		//p.addGold(15);
-		System.out.println(game.getPlayers().get(0).getGold());
-		System.out.println(p.getGold());
-		//assertEquals(p.getGold(), 15) ;
-		/*
-		game.collect(p);
-		assertEquals(p.getNbResource(r.toString()), 4) ;
-		assertFalse(game.convert(p, r, nbResource)) ;
-		assertEquals(p.getGold(), 15) ;
-		
-		game.collect(p);
-		assertEquals(p.getNbResource(r.toString()), 5) ;
-		assertEquals(p.getGold(), 15) ;
-		
-		assertTrue(game.convert(p, r, nbResource)) ;
-		assertEquals(p.getGold(), 40) ;*/
+		assertEquals(p.getGold(), 39) ;
 	}
+	
 	
 	
 	@Test
@@ -146,17 +132,16 @@ public class FarmGameTest {
 		Biome biome = new Desert() ;
 		Cell cell = new Cell(2, 3, biome) ;
 		Worker w = new Worker(cell) ;
-		Resource r = new Wood() ;
+		Resource r = biome.resource() ;
 		
-		int nbResource = r.loot() ;
-		
-		p.addCharacter(w);
 		assertTrue(game.addPlayers(p)) ;
-		assertEquals(w.cost(), 0) ;
-		
-		game.deploy(p, w, cell);
 		assertEquals(w.getCell(), cell) ;
-		//assertEquals(w.cost(), 3) ;
+		assertEquals(w.cost(), 3) ;
+		assertEquals(p.getGold(), 15) ;
+		
+		game.distribute(p) ;
+		assertEquals(p.getGold(), 15) ;
+		
 		
 		
 	}
