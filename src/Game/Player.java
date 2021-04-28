@@ -56,5 +56,17 @@ public abstract class Player {
 	public Map<String, Integer> getResources(){
 		return this.resources;
 	}
+	
+	public boolean equals(Object o) {
+		if (!( o instanceof Player)) {
+			return false ;
+		}
+		else {
+			Player other = (Player) o ;
+            return (this.name == other.name) &&  (this.gold == other.gold) ; 
+
+		}
+	}
+	
 	public abstract int calculateScore();
 }

@@ -19,6 +19,20 @@ public abstract class Game {
 			return this.nbRounds;
 		}
 		
+		public boolean addPlayers(Player p) {
+			boolean res = false ;
+			if (! this.players.contains(p)) {
+				this.players.add(p) ;
+				res = true ;
+			}
+			return res ;
+			
+		}
+		
+		public List<Player> getPlayers() {
+			return this.players ;
+		}
+		
 		public List<Player> winners() {
 			int bestScore = 0;
 			int tmpScore;

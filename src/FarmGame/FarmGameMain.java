@@ -30,6 +30,7 @@ public class FarmGameMain {
 		int height  = Input.readInt();
 		Game myGame = new FarmGame(players, tours, width, height);
 		System.out.println("Debut Game: ");
+		
 		myGame.play();
 	}
 }

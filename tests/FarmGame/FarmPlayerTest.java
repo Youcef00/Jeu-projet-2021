@@ -5,12 +5,12 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import FarmGame.FarmPlayer;
 import FarmGame.util.resources.Sand;
 import Game.Cell;
 import Game.util.Biome;
 import Game.util.ParmsNotCompatibleException;
 import Game.util.Resource;
-import WarGame.Army;
 import WarGame.util.biomes.Desert;
 
 public class FarmPlayerTest {
@@ -88,14 +88,13 @@ public class FarmPlayerTest {
 	@Test
 	public void testAddNbResource() throws ParmsNotCompatibleException {
 		FarmPlayer p = new FarmPlayer("BARRY") ;
-		Biome biome = new Desert() ;
-		Cell cell = new Cell(2, 5, biome) ;
-		Worker w = new Worker(cell) ;
+		Resource r = new Sand() ;
 		
-		p.initResource("SAND");
-		assertEquals(p.getNbResource("SAND"), 0) ;
+		p.initResource(r.toString());
+		assertEquals(p.getNbResource(r.toString()), 0) ;
 		
-		p.addNbResource("SAND", 2) ;
+		p.addNbResource(r.toString(), 2) ;
+		assertEquals(p.getNbResource(r.toString()), 2) ;
 	}
 
 	

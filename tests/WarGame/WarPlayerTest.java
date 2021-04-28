@@ -4,8 +4,6 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import FarmGame.FarmPlayer;
-import FarmGame.Worker;
 import Game.Cell;
 import Game.util.Biome;
 import Game.util.ParmsNotCompatibleException;
