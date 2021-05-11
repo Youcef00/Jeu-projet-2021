@@ -124,24 +124,22 @@ public class FarmGameTest {
 	public void testDistribute() throws ParmsNotCompatibleException {
 		
 		FarmPlayer p = new FarmPlayer("BARRY") ;
-		
-		
 		List<Player> players = new ArrayList<Player>() ;
 		FarmGame game = new FarmGame(players, 8, 8, 5) ;
-		
 		Biome biome = new Desert() ;
 		Cell cell = new Cell(2, 3, biome) ;
 		Worker w = new Worker(cell) ;
-		Resource r = biome.resource() ;
+		p.addCharacter(w);
 		
-		assertTrue(game.addPlayers(p)) ;
-		assertEquals(w.getCell(), cell) ;
 		assertEquals(w.cost(), 3) ;
 		assertEquals(p.getGold(), 15) ;
+		assertEquals(w.getNbGold(), 0) ;
 		
-		game.distribute(p) ;
-		assertEquals(p.getGold(), 15) ;
+		game.distribute(p);
 		
+		assertEquals(w.cost(), 3) ;
+		assertEquals(p.getGold(), 12) ;
+		assertEquals(w.getNbGold(), 3) ;
 		
 		
 	}
