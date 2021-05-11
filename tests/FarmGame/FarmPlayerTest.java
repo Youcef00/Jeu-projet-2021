@@ -16,14 +16,30 @@ import WarGame.util.biomes.Desert;
 public class FarmPlayerTest {
 
 	@Test
-	public void testAddGold() {
+	public void testAddGoldAndCalculateScore() throws ParmsNotCompatibleException {
 		FarmPlayer p = new FarmPlayer("BARRY") ;
+		Biome biome = new Desert() ;
+		Cell cell = new Cell(2, 3, biome) ;
+		Worker w = new Worker(cell) ;
 		
+		/* Test the method add gold */
 		assertEquals(p.getGold(), 15) ;
 		
 		p.addGold(20) ;
 		
 		assertEquals(p.getGold(), 35) ;
+		
+		/* Test the method that calculate score */
+		p.addCharacter(w) ;
+		
+		assertEquals(p.calculateScore(), 35) ;
+		assertEquals(p.getCharacters().get(0).getNbGold(), 0) ;
+		
+		p.getCharacters().get(0).addGold(25);
+		
+		assertEquals(p.getCharacters().get(0).getNbGold(), 25) ;
+		assertEquals(p.calculateScore(), 60) ;
+		
 	}
 	
 	@Test

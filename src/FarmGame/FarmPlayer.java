@@ -14,10 +14,7 @@ public class FarmPlayer extends Player {
 		super(name, 15) ;
 	}
 	
-	/**
-	 * The method that calculate the score of player
-	 * @return (int) the score of the player
-	 */
+	@Override
 	public int calculateScore() {
 		int score = this.gold;
 		for(Character w : this.characters) {
