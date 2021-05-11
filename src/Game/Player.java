@@ -2,6 +2,10 @@ package Game;
 
 import java.util.*;
 
+/**
+ * mother class of players which will allow us to code all the players for each game
+*/
+
 public abstract class Player {
 	
 	/* the name attribute */

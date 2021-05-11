@@ -28,7 +28,7 @@ public class FarmGame extends Game {
 		
 	}
 	
-
+	@Override
 	public void setBoard(int width, int height) {
 		Random random = new Random();
 		
@@ -70,13 +70,13 @@ public class FarmGame extends Game {
 	}
 	
 
-
+	@Override
 	public void deploy(Player player, Character character, Cell cell) {
 		cell.addCharacter(character);
 		player.addCharacter(character);
 	}
 
-
+	@Override
 	public void collect(Player player) {
 		Resource resource ;
 		for (Character c: player.getCharacters()) {
@@ -85,7 +85,7 @@ public class FarmGame extends Game {
 		}
 	}
 
-
+	@Override
 	public boolean convert(Player player, Resource resource, int nbResource) {
 		if (player.getNbResource(resource.toString()) >= nbResource) {
 			player.addGold(resource.loot()*nbResource);
@@ -95,7 +95,7 @@ public class FarmGame extends Game {
 		return false;
 	}
 
-
+	@Override
 	public void distribute(Player player) {
 		int cost;
 		List <Character> WorkersToRemove = new ArrayList<Character>();
@@ -114,6 +114,7 @@ public class FarmGame extends Game {
 		}
 	}
 	
+	
 	protected boolean checkFull() {
 		Biome ocean = new Ocean();
 		Cell cell;
@@ -127,6 +128,7 @@ public class FarmGame extends Game {
 		}
 		return true;
 	}
+	
 	
 	protected void showBoard() {
 		System.out.print("     ");
@@ -186,7 +188,8 @@ public class FarmGame extends Game {
 			t++;
 		}
 	}
-
+	
+	@Override
 	public void playOneRound(Player player) {
 		String answer = null;
 		boolean coord = false ;
@@ -373,7 +376,7 @@ public class FarmGame extends Game {
 	
 	}
 
-
+	@Override
 	public void play() {
 		Resource Rock = new Rock();
 		Resource Sand = new Sand();
