@@ -6,13 +6,26 @@ import Game.util.ParmsNotCompatibleException;
 import Game.Character;
 import FarmGame.util.biomes.*;
 
+/**
+ * the class that implements the character (worker) for FarmGame
+*/
 public class Worker extends Character {
-
+	
+	/**
+	 * the constructor
+	 * @param cell (Cell) the cell
+	 * @throws ParmsNotCompatibleException
+	 */
 	public Worker(Cell cell) throws ParmsNotCompatibleException {
 		super(0, cell);
 		checkBiome(cell);
 	}
 	
+	/**
+     * Checks if the cell can accept a Workers
+     * @param (Cell) the cell to be checked
+     * @throws ParmsNotCompatibleException (Exception)
+     */
 	private void checkBiome(Cell cell) throws ParmsNotCompatibleException{
 		Biome ocean = new Ocean();
 		if (cell.getBiome().equals(ocean)) {
@@ -20,6 +33,7 @@ public class Worker extends Character {
 		}
 	}
 	
+	@Override
 	public boolean equals(Object o) {
 		if (o instanceof Worker) {
 			Worker other = (Worker) o;
@@ -30,10 +44,12 @@ public class Worker extends Character {
 		}
 	}
 	
+	@Override
 	public String toString() {
 		return "Worker: " + this.nbGold + " Gold. Cell: ["+ this.cell.toString()+"]";
 	}
 	
+	@Override
 	public int cost() {
 		Biome mountain = new Mountain();
 		Biome desert = new Desert();
