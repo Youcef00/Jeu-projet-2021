@@ -2,19 +2,24 @@ package WarGame.util.resources;
 
 import Game.util.Resource;
 
+/**
+ * Class Sand implements Resource
+ */
 public class Sand implements Resource {
-
-
+	/** This attribute is the number of loot */
 	private final int LOOT;
-	
+		
+	/**
+	 * Constructor of Sand
+	 */
 	public Sand() {
 		this.LOOT = 0;
 	}
-	
+	@Override
 	public int loot() {
 		return this.LOOT;
 	}
-	
+	@Override
 	public boolean equals(Object o) {
 		if (o instanceof Sand) {
 			Sand other = (Sand) o;
@@ -25,7 +30,7 @@ public class Sand implements Resource {
 			return false;
 		}
 	}
-	
+	@Override
 	public String toString() {
 		return "Sand";
 	}
