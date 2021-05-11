@@ -2,18 +2,27 @@ package FarmGame.util.resources;
 
 import Game.util.Resource;
 
+/**
+ * Class Wood implements Resource
+ */
 public class Wood implements Resource {
 
+	/** This attribute is the number of loot */
 	private final int LOOT;
 	
+	/**
+	 * Constructor of Wood
+	 */
 	public Wood() {
 		this.LOOT = 2;
 	}
 	
+	@Override
 	public int loot() {
 		return this.LOOT;
 	}
 	
+	@Override
 	public boolean equals(Object o) {
 		if (o instanceof Wood) {
 			Wood other = (Wood) o;
@@ -25,6 +34,7 @@ public class Wood implements Resource {
 		}
 	}
 	
+	@Override
 	public String toString() {
 		return "Wood";
 	}
