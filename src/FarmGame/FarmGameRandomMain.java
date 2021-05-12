@@ -7,7 +7,9 @@ import Game.Game;
 import Game.Player;
 
 
-
+/**
+ * the class which implements the main of FarmGame Random
+ */
 public class FarmGameRandomMain {
 
 	public static void main(String[] args) {

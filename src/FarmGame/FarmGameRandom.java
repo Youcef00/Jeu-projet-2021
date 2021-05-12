@@ -13,30 +13,48 @@ import FarmGame.util.biomes.*;
 import FarmGame.util.resources.*;
 
 
-
+/**
+ * the class that implements the FarmGame randomly
+*/
 public class FarmGameRandom extends FarmGame{
-
+	
+	/**
+	 * The constructor
+	 * @param players (List<Player>) the list of players
+	 * @param nbRounds (int) the number of round
+	 * @param width (int) the width of board
+	 * @param height (int) the height of board
+	 */
 	public FarmGameRandom(List<Player> players, int nbRounds, int width, int height) {
 		super(players,nbRounds, width, height) ;
 	}
 	
-private static int getRandomNumberInRange(int min, int max) {
-
-        
-
+	/**
+	 * the private method which randomly returns the number of workers used in the game
+	 * @param min (int) the minimum of size
+	 * @param max (int) the maximum of size
+	 * @return (int) the random number
+	 */
+	private static int getRandomNumberInRange(int min, int max) {
         Random r = new Random();
         return r.nextInt((max - min) + 1) + min;
     }
-	 
-	private static String getRandomYN()
-	    {
-		 	List<String> YN = new ArrayList<String>();  YN.add("y"); YN.add("n");
-	        Random rand = new Random();
-	        return YN.get(rand.nextInt(YN.size()));
-	    }
 	
-	 	
-	 private Cell getRandomCell() {
+	/**
+	 * the private method that randomly returns the yes or no answer used in the game
+	 * @return (String) the answer (y for yes, and n for no)
+	*/
+	private static String getRandomYN(){
+		List<String> YN = new ArrayList<String>();  YN.add("y"); YN.add("n");
+	    Random rand = new Random();
+	    return YN.get(rand.nextInt(YN.size()));
+	}
+	
+	/**
+	 * the private method which randomly returns a cell
+	 * @return (Cell) the cell
+	*/
+	private Cell getRandomCell() {
 		 List<Cell> avaibleCells = new ArrayList<Cell>();
 		 Cell currentCell;
 		 for(int i=0; i< this.board.length; i++) {
@@ -53,16 +71,23 @@ private static int getRandomNumberInRange(int min, int max) {
 		 
 	 }
 	 
+	/**
+	 * the private method which calculate the total number of resources for the player passed in parameter
+	 * @param player (Player) the player
+	 * @return (int) the total of number resource
+	*/
 	 private static int totalNbResources(Player player) {
-			int nbResourceTmp = 0;
-			for(Map.Entry<String, Integer> r : player.getResources().entrySet()) {
-				
-				nbResourceTmp += player.getResources().get(r.getKey());
-			}
-			return nbResourceTmp;
-		}
-	 
-		public void playOneRound(Player player) {
+		 int nbResourceTmp = 0;
+		 for(Map.Entry<String, Integer> r : player.getResources().entrySet()) {
+			 nbResourceTmp += player.getResources().get(r.getKey());
+		 }
+		 return nbResourceTmp;
+	}
+	
+	/**
+	  * the method allowing us to play one round at WarGameRandom
+	*/
+	public void playOneRound(Player player) {
 			String answer = null;
 			
 			showBoard();

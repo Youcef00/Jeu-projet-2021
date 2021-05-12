@@ -12,27 +12,47 @@ import Game.util.*;
 import WarGame.util.biomes.*;
 import WarGame.util.resources.*;
 
+/**
+ * the class that implements the WarGame randomly
+ */
 public class WarGameRandom extends WarGame {
-
+	
+	/**
+	 * The constructor
+	 * @param players (List<Player>) the list of players
+	 * @param nbRounds (int) the number of round
+	 * @param width (int) the width of board
+	 * @param height (int) the height of board
+	 */
 	public WarGameRandom(List<Player> players, int nbRounds, int width, int height) {
 		super(players, nbRounds, width, height);
 	}
 	
+	/**
+	 * the private method which randomly returns the number of armies used in the game
+	 * @param min (int) the minimum of size
+	 * @param max (int) the maximum of size
+	 * @return (int) the random number
+	 */
 	private static int getRandomNumberInRange(int min, int max) {
-
-        
-
         Random r = new Random();
         return r.nextInt((max - min) + 1) + min;
     }
-	 
-	private static String getRandomYN()
-	    {
+	
+	/**
+	 * the private method that randomly returns the yes or no answer used in the game
+	 * @return (String) the answer (y for yes, and n for no)
+	 */
+	private static String getRandomYN() {
 		 	List<String> YN = new ArrayList<String>();  YN.add("y"); YN.add("n");
 	        Random rand = new Random();
 	        return YN.get(rand.nextInt(YN.size()));
-	    }
+	}
 	
+	/**
+	 * the private method which randomly returns a cell
+	 * @return (Cell) the cell
+	 */
 	private Cell getRandomCell() {
 		 List<Cell> avaibleCells = new ArrayList<Cell>();
 		 Cell currentCell;
@@ -49,7 +69,12 @@ public class WarGameRandom extends WarGame {
 		
 		 
 	 }
-	 
+	
+	/**
+	 * the private method which calculate the total number of resources for the player passed in parameter
+	 * @param player (Player) the player
+	 * @return (int) the total of number resource
+	*/
 	private static int totalNbResources(Player player) {
 			int nbResourceTmp = 0;
 			for(Map.Entry<String, Integer> r : player.getResources().entrySet()) {
@@ -58,15 +83,18 @@ public class WarGameRandom extends WarGame {
 			}
 			return nbResourceTmp;
 		}
-	 
+	
+	/**
+	 * the method allowing us to play one round at WarGameRandom
+	*/
 	public void playOneRound(Player player) {
-			String answer;
+			String answer ;
+			boolean coord = false ;
 			List<String> answers = new ArrayList<>();  answers.add("y");  answers.add("n");
-			boolean coord = false;
 			WarPlayer wp = (WarPlayer) player;
 			showBoard();
 			showArmies(player);
-			System.out.println("You have: "+ wp.getNbWarriors() + " warriors");
+			System.out.println("You have: " + wp.getNbWarriors() + " warriors");
 			//Deploy !!!!!!!!!!!!!!!
 			System.out.print("Deploy ? [y/n]: ");
 			answer = getRandomYN();
@@ -75,13 +103,10 @@ public class WarGameRandom extends WarGame {
 			if (answer.equals("y")) {
 				
 				Cell chosenCell = getRandomCell();
-				System.out.println("Cell [X]: "+ chosenCell.getX());
-				System.out.println("Cell [Y]: "+ chosenCell.getY());
+				System.out.println("Cell [X]: " + chosenCell.getX());
+				System.out.println("Cell [Y]: " + chosenCell.getY());
 				
-				
-				// Army creation
-				
-				
+						// Army creation
 						int size;
 						System.out.print("Size of army: ");
 						if (chosenCell.getBiome().equals(new Mountain()) || chosenCell.getBiome().equals(new Desert()) ) {
@@ -99,9 +124,7 @@ public class WarGameRandom extends WarGame {
 							army = new Army(size, chosenCell);
 						} catch (ParmsNotCompatibleException e) { }
 				
-				
 				// Deploy !!!!!!!!!!!!!!!!
-			    	
 				deploy(player, army, chosenCell);
 				showArmies(player);
 			}
