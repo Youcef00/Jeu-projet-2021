@@ -1,1 +1,0 @@
-packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"WarGame"},{"l":"WarGame.util.biomes"},{"l":"WarGame.util.resources"}]

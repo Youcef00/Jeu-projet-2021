@@ -58,9 +58,8 @@ public class WarGame extends Game {
 		
 		public void deploy(Player player, Character character, Cell cell) {
 			player.addCharacter(character);
-			Army a = (Army) character;
-			WarPlayer wp = (WarPlayer) player;
-			wp.removeWarriors(a.getSize());
+			
+			
 			cell.addCharacter(character);
 			
 			// North
@@ -295,6 +294,8 @@ public class WarGame extends Game {
 				// Deploy !!!!!!!!!!!!!!!!
 			    	
 				deploy(player, army, board[x][y]);
+				wp.removeWarriors(size);
+				
 				showArmies(player);
 			}
 			 // Collect !!!!!!!!!!!!!!!!!
@@ -305,7 +306,7 @@ public class WarGame extends Game {
 			
 			// Convert !!!!!!!!!!!!!!!!!!
 			
-			boolean haveMultipleResources = false;
+			
 			
 			int nbResourceTmp = 0;
 			for(Map.Entry<String, Integer> r : player.getResources().entrySet()) {
@@ -313,17 +314,22 @@ public class WarGame extends Game {
 				nbResourceTmp += player.getResources().get(r.getKey());
 			}
 			
+				if (nbResourceTmp == 0) {
+					System.out.println("You don't have resources to convert!");
+					
+				}
+				else {
+					System.out.print("Convert ? [y/n]: ");
+					answer = Input.YNString();
+				}
 				
-				System.out.print("Convert ? [y/n]: ");
-				answer = Input.YNString();
 				
 				int nbResource;
 				int selectedResource;
 				
 				Resource resource = null;
-				while (answer.equals("y")) {
+				while (answer.equals("y") && nbResourceTmp != 0) {
 					if (nbResourceTmp > 1) {
-						haveMultipleResources = true;
 					
 					System.out.print("Choose resource (int): ");
 					selectedResource = Input.readInt() - 1;

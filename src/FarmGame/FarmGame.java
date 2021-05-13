@@ -279,10 +279,13 @@ public class FarmGame extends Game {
 				nbResourceTmp += player.getResources().get(r.getKey());
 			}
 			
+			if(nbResourceTmp == 0) {
+				System.out.println("You don't have resources to convert! ");
+			}
 			
 			answer = "y";
 			Resource resource = null;
-			while (answer.equals("y")) {
+			while (answer.equals("y") && nbResourceTmp != 0) {
 				if (nbResourceTmp > 1) {
 					haveMultipleResources = true;
 				
