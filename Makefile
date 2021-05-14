@@ -1,4 +1,4 @@
-all: cls guerre.jar agricole.jar  guerre-multi.jar agricole-multi.jar
+all: cls doc guerre.jar agricole.jar  guerre-multi.jar agricole-multi.jar 
 
 
 

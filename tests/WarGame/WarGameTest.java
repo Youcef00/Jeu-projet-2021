@@ -2,9 +2,6 @@ package WarGame;
 
 import static org.junit.Assert.*;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.junit.*;
 
 import Game.*;
@@ -13,7 +10,6 @@ import WarGame.util.biomes.*;
 
 public class WarGameTest {
 	
-	private List<Player> players ;
 	private WarPlayer p ;
 	private WarGame game ;
 	private Biome biome ;
@@ -23,8 +19,7 @@ public class WarGameTest {
 
 	@Before
 	public void before() throws ParmsNotCompatibleException {
-		this.players = new ArrayList<Player>() ;
-		this.game = new WarGame(this.players, 5, 10, 10) ;
+		this.game = new WarGame(5, 10, 10) ;
 		this.p = new WarPlayer("BARRY") ;
 		this.biome = new Mountain() ;
 		this.cell = new Cell(8, 5, this.biome) ;
@@ -54,7 +49,7 @@ public class WarGameTest {
 		game.deploy(p, a, cell);
 		
 		assertEquals(game.getPlayers().get(0).getCharacters().size(), 1) ;
-		assertEquals(this.p.getNbWarriors(), 30) ;
+		assertEquals(this.p.getNbWarriors(), 35) ;
 		assertEquals(this.cell.getCharacter(), a) ;
 	}
 	

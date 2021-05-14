@@ -24,8 +24,8 @@ public class WarGameRandom extends WarGame {
 	 * @param width (int) the width of board
 	 * @param height (int) the height of board
 	 */
-	public WarGameRandom(List<Player> players, int nbRounds, int width, int height) {
-		super(players, nbRounds, width, height);
+	public WarGameRandom(int nbRounds, int width, int height) {
+		super(nbRounds, width, height);
 	}
 	
 	/**

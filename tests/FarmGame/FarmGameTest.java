@@ -2,24 +2,34 @@ package FarmGame;
 
 import static org.junit.Assert.*;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import org.junit.Before;
 import org.junit.Test;
 
-import FarmGame.util.resources.*;
 import Game.* ;
 import Game.util.*;
 import FarmGame.util.biomes.*;
 
 public class FarmGameTest {
+	
+	private FarmPlayer p ;
+	private FarmGame game ;
+	private Biome biome ;
+	private Cell cell ;
+	private Worker w ;
+	private Resource r ;
+	
+	@Before
+	public void before() throws ParmsNotCompatibleException {
+		this.p = new FarmPlayer("BARRY") ;
+		this.game = new FarmGame(2, 4, 5) ;
+		this.biome = new Desert() ;
+		this.cell = new Cell(2, 3, biome) ;
+		this.w = new Worker(cell) ;
+		this.r = biome.resource() ;
+	}
 
 	@Test
 	public void testAddPlayer() {
-		FarmPlayer p = new FarmPlayer("BARRY") ;
-		List<Player> players = new ArrayList<Player>() ;
-		FarmGame game = new FarmGame(players, 2, 4, 5) ;
-		
 		assertFalse(game.getPlayers().contains(p)) ;
 		
 		assertTrue(game.addPlayers(p)) ;
@@ -28,16 +38,7 @@ public class FarmGameTest {
 	}
 	
 	@Test
-	public void testDeploy() throws ParmsNotCompatibleException {
-		FarmPlayer p = new FarmPlayer("BARRY") ;
-		List<Player> players = new ArrayList<Player>() ;
-		FarmGame game = new FarmGame(players, 2, 4, 5) ;
-		
-		Biome biome = new Desert() ;
-		Cell cell = new Cell(2, 3, biome) ;
-		
-		Worker w = new Worker(cell) ;
-		
+	public void testDeploy() {
 		assertTrue(cell.isFree()) ;
 		assertEquals(cell.getCharacter(), null) ;
 		assertFalse(p.getCharacters().contains(w)) ;
@@ -50,16 +51,7 @@ public class FarmGameTest {
 	}
 	
 	@Test
-	public void testCollect() throws ParmsNotCompatibleException {
-		FarmPlayer p = new FarmPlayer("BARRY") ;
-		
-		
-		List<Player> players = new ArrayList<Player>() ;
-		FarmGame game = new FarmGame(players, 2, 4, 5) ;
-		Biome biome = new Desert() ;
-		Cell cell = new Cell(2, 3, biome) ;
-		Resource r = new Sand() ;
-		Worker w = new Worker(cell) ;
+	public void testCollect() {
 		p.initResource(r.toString());
 		assertTrue(game.addPlayers(p)) ;
 		
@@ -74,18 +66,7 @@ public class FarmGameTest {
 	}
 	
 	@Test
-	public void testConvert() throws ParmsNotCompatibleException {
-		FarmPlayer p = new FarmPlayer("BARRY") ;
-		
-		
-		List<Player> players = new ArrayList<Player>() ;
-		FarmGame game = new FarmGame(players, 10, 9, 5) ;
-		
-		Biome biome = new Mountain() ;
-		Cell cell = new Cell(2, 3, biome) ;
-		Worker w = new Worker(cell) ;
-		Resource r = biome.resource() ;
-		
+	public void testConvert() {
 		int nbResource = 3 ;
 		
 		
@@ -115,20 +96,12 @@ public class FarmGameTest {
 		assertEquals(p.getNbResource(r.toString()), 3) ;
 		boolean res = game.convert(p, r, nbResource) ;
 		assertTrue(res) ;
-		assertEquals(p.getGold(), 39) ;
+		assertEquals(p.getGold(), 30) ;
 	}
 	
-	
-	
 	@Test
-	public void testDistribute() throws ParmsNotCompatibleException {
+	public void testDistribute() {
 		
-		FarmPlayer p = new FarmPlayer("BARRY") ;
-		List<Player> players = new ArrayList<Player>() ;
-		FarmGame game = new FarmGame(players, 8, 8, 5) ;
-		Biome biome = new Desert() ;
-		Cell cell = new Cell(2, 3, biome) ;
-		Worker w = new Worker(cell) ;
 		p.addCharacter(w);
 		
 		assertEquals(w.cost(), 3) ;

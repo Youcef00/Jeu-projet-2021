@@ -26,13 +26,12 @@ public abstract class Game {
 		
 		/**
 		 * creates a game
-		 * @param players the players of the game
 		 * @param nbRounds the number of rounds for the game
 		 * @param width the width of the board
 		 * @param height the height of the board
 		 */
-		public Game(List<Player> players, int nbRounds, int width, int height) {
-			this.players = players;
+		public Game(int nbRounds, int width, int height) {
+			this.players = new ArrayList<Player>() ;
 			this.nbRounds = nbRounds;
 			setBoard(width, height);
 		}

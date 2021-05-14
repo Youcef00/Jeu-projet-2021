@@ -22,9 +22,14 @@ import Game.util.*;
 public class FarmGame extends Game {
 
 	
-	
-	public FarmGame(List<Player> players, int nbRounds, int width, int height) {
-		super(players,nbRounds, width, height) ;
+	/**
+	 * the constructor
+	 * @param nbRounds (int) the number of rounds
+	 * @param width (int) the number of rounds
+	 * @param height (int) the number of rounds
+	 */
+	public FarmGame(int nbRounds, int width, int height) {
+		super(nbRounds, width, height) ;
 		
 	}
 	
@@ -40,7 +45,8 @@ public class FarmGame extends Game {
 		
 		Biome[] biomes = new Biome[] {mountain, desert, forest, plain};
 		
-		// init the board
+		/* init the board */
+		
 		Cell[][] board = new Cell[height][width];
 		for (int i=0; i<board.length; i++) {
 			for (int j=0; j<board[i].length; j++) {

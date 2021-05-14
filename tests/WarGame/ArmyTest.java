@@ -5,8 +5,7 @@ import static org.junit.Assert.*;
 import org.junit.* ;
 
 import Game.Cell ;
-import Game.util.Biome ;
-import Game.util.ParmsNotCompatibleException;
+import Game.util.*;
 import WarGame.util.biomes.* ;
 
 

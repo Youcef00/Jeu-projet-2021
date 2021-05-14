@@ -25,8 +25,8 @@ public class FarmGameRandom extends FarmGame{
 	 * @param width (int) the width of board
 	 * @param height (int) the height of board
 	 */
-	public FarmGameRandom(List<Player> players, int nbRounds, int width, int height) {
-		super(players,nbRounds, width, height) ;
+	public FarmGameRandom(int nbRounds, int width, int height) {
+		super(nbRounds, width, height) ;
 	}
 	
 	/**

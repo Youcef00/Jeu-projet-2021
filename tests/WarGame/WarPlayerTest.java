@@ -2,6 +2,7 @@ package WarGame;
 
 import static org.junit.Assert.*;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import Game.Cell;
@@ -12,13 +13,23 @@ import WarGame.util.biomes.Desert;
 
 public class WarPlayerTest {
 	
+	private WarPlayer p ;
+	private Biome biome ;
+	private Cell cell ;
+	private Army a ;
+	private Army a1 ;
+	
+	@Before
+	public void before() throws ParmsNotCompatibleException {
+		this.p = new WarPlayer("BARRY") ;
+		this.biome = new Desert() ;
+		this.cell = new Cell(3, 5, biome) ;
+		this.a = new Army(2, cell) ;
+		this.a1 = new Army(1, cell) ;
+	}
+	
 	@Test
-	public void testAddGoldAndCalculateScore() throws ParmsNotCompatibleException {
-		WarPlayer p = new WarPlayer("BARRY") ;
-		Biome biome = new Desert() ;
-		Cell cell = new Cell(3, 5, biome) ;
-		Army a = new Army(2, cell) ;
-		
+	public void testAddGoldAndCalculateScore() {
 		/* Test the method Add Gold */
 		assertEquals(p.getGold(), 0) ;
 		
@@ -36,15 +47,12 @@ public class WarPlayerTest {
 		
 		assertEquals(p.getCharacters().get(0).getNbGold(), 10) ;
 		assertEquals(p.calculateScore(), 29) ;
-		
+
 	}
 	
 	
 	@Test
 	public void testAddFood() {
-		/* Player initialization */
-		WarPlayer p = new WarPlayer("BARRY") ;
-		
 		/* initial state check */
 		assertEquals(p.getFood(), 10) ;
 		
@@ -57,9 +65,6 @@ public class WarPlayerTest {
 	
 	@Test
 	public void testRemoveWarriors() {
-		/* Player initialization */
-		WarPlayer p = new WarPlayer("BARRY") ;
-		
 		/* initial state check */
 		assertEquals(p.getNbWarriors(), 35) ;
 		
@@ -72,9 +77,6 @@ public class WarPlayerTest {
 	
 	@Test
 	public void testConsumeFood() {
-		/* Player initialization */
-		WarPlayer p = new WarPlayer("BARRY") ;
-		
 		/* initial state check */
 		assertEquals(p.getFood(), 10) ;
 		
@@ -87,12 +89,6 @@ public class WarPlayerTest {
 	
 	@Test
 	public void testAddCharacter() throws ParmsNotCompatibleException {
-		WarPlayer p = new WarPlayer("BARRY") ;
-		Biome biome = new Desert() ;
-		Cell cell = new Cell(2, 3, biome) ;
-		Army a = new Army(2, cell) ;
-		Army a1 = new Army(1, cell) ;
-		
 		assertEquals(p.getCharacters().size(), 0) ;
 		
 		p.addCharacter(a) ;
@@ -104,12 +100,6 @@ public class WarPlayerTest {
 	
 	@Test
 	public void testRemoveCharacter() throws ParmsNotCompatibleException {
-		WarPlayer p = new WarPlayer("BARRY") ;
-		Biome biome = new Desert() ;
-		Cell cell = new Cell(2, 3, biome) ;
-		Army a = new Army(2, cell) ;
-		Army a1 = new Army(1, cell) ;
-		
 		assertEquals(p.getCharacters().size(), 0) ;
 		
 		p.addCharacter(a) ;
