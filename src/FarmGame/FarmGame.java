@@ -120,7 +120,10 @@ public class FarmGame extends Game {
 		}
 	}
 	
-	
+	/**
+	 * the method allowing us not to deploy on an ocean cell
+	 * @return (boolean) true if the cell is ocean or false is not
+	 */
 	protected boolean checkFull() {
 		Biome ocean = new Ocean();
 		Cell cell;
@@ -135,7 +138,9 @@ public class FarmGame extends Game {
 		return true;
 	}
 	
-	
+	/**
+	 * the method that creates and displays the game board
+	 */
 	protected void showBoard() {
 		System.out.print("     ");
 		for (int i=0; i<this.board[0].length; i++) {
@@ -172,11 +177,12 @@ public class FarmGame extends Game {
 		System.out.print("\n");
 	}
 	
+	/**
+	 * the method which displays a resource for a player passed in parameter
+	 * @param player (Player) the player
+	 */
 	protected void showResources(Player player) {
-		
 		System.out.println("You have: "+ player.getGold() + " gold");
-		
-		
 		Map<String, Integer> resources = player.getResources();
 		Set<String> keys = resources.keySet();
 		int k = 1;
@@ -186,6 +192,10 @@ public class FarmGame extends Game {
 		}
 	}
 	
+	/**
+	 * the method which displays a workers for a player passed in parameter
+	 * @param p (Player) the player
+	 */
 	protected void showWorkers(Player p) {
 		System.out.println("Your workers are: ");
 		int t = 1;
