@@ -81,15 +81,95 @@ Il ne nous reste pas de problèmes non résolu. Il nous reste de finir de compl�
 
 ### Difficultés restant à résoudre
 
+Implémentations de l'affichage pour l'utilisateur
+
 ## Livrable 4
 
-### Atteinte des objectifs
+### Affichage dans le terminal :
 
-### Difficultés restant à résoudre
+#### La carte
+
+- Nous avons implémenté un affichage de la carte dans le terminal. Voici comment l'utiliser. Chaque biome possède une lettre qui l'identifie : 
+	- `O` -> océan
+	- `[M]` -> montagne
+	- `[D]` -> desert
+	- `[P]` -> plaine
+	- `[F]` -> foret
+	
+Voici un exemple d'affichage de la carte : 
+
+![arborescences dossier](images/exemples/carte_exemple.png?raw=true "Title")
+	
+- Lorsque l'on ajoute une armée ou un ouvrier sur la carte, la lettre du biome change et devient alors `[A]`, cela permet de visualiser l'emplacement où les autres joueurs ont déployé.
+
+- Comment bien déployer en utilisant les coordonnées ? 
+L'axe des `x` est l'axe vertical et l'axe des `y` est  l'axe horizontal.
+	
+#### Informatoins complémentaires
+
+- Pour que l'utilisateur ne soit pas perdu, à chaque tour l'utilisateur voit ses troupes déployées, ses ressources et peut s'appuier sur la carte pour choisir les zones les plus stratégiques. 
+- A la fin de la partie, il y a un résumé des points des joueurs et le vainqueur.
+
+
+# Arborescences 
+Voici la structure de notre projet. 
+
+## Dossiers
+Voici l'arborescence des dossiers :
+
+![arborescences_dossier](images/arborescences/arborescence_dossiers.png?raw=true "Title")
+
+## Fichiers
+
+### Dossier : `src`
+Voici l'arborescence des fichiers dans le dossier `src` : 
+
+![arborescences src](images/arborescences/arborescence_src.png?raw=true "Title")
+
+### Dossier : `tests`
+Voici l'arborescence des fichiers dans le dossier `tests` :
+
+![arborescences tests](images/arborescences/arborescence_tests.png?raw=true "Title")
+
+
+
+# UML 
+Ce UML est accésible en plus grand si vous cliquez dessus, ou dans le dossier `./images/UML`. 
+- Précision : les méthodes possédant le symbole `#` sont des méthodes abstraites.
+
+![UML](images/UML/class-diagram.jpeg?raw=true "Title")
+
+
+# Makefile
+
+- Les commandes `make` : 
+	- `all`, 
+	- `cls`, produit les fichiers `.class`,
+	- `doc`, produit la javadoc,
+	- `guerre.jar`, créer l'executable pour le jeu de guerre aléatoire, 
+	- `guerre-multi.jar`, créer l'executable pour le jeu de guerre sans le mode aléatoire, 
+	- `agricole.jar`, créer l'executable pour le jeu agricole aléatoire, 
+	- `agricole-multi.jar`, créer l'executable pour le jeu agricole sans le mode aléatoire, 
+	- `clean`,
+	- `.PHONY`.
+
+# Jouer (aléatoire)
+Après avoir crée l'executable, vous pouvez lancer le jeu : 
+
+- Jeu de `Guerre` :
+```shell
+% java -jar jar/guerre.jar Raymond Odette
+```
+
+- Jeu `Agricole` :
+```shell
+% java -jar jar/agricole.jar Vigneron Eleveur Maraicher
+```
 
 # Journal de bord
 
 ## Semaine 1
+- Modélisation de l'ensemble de notre projet
 - UML provisoire
 - Classes créees / partielment crées: 
   - Dans le dossier `Game` :
@@ -142,23 +222,105 @@ Il ne nous reste pas de problèmes non résolu. Il nous reste de finir de compl�
   
 ## Semaine 3
 
-## Semaine 4
+- Modifications du readme
+- Corrections de bugs :
+	- problème avec la condition dans le `while` (class `FarmGame` :  `playOneRound`)
+	- problème avec la condition dans le `while` (class `WarGame` :  `playOneRound`)
 
-## Semaine 5
-
-## Semaine 6
-
-## Semaine 7
-
-## Semaine 8
 
 ## Semaine 9
 
+- Modifications `playOneRound` dans `WarGame` :
+	- On demande maintenant la taille de l'armée après avoir demandé les coordonnées de la case
+	- gestion de ressources (amélioration)
+	- amélioration de `playOneRound`
+
+- Modifications de la class `Game`:
+	- amélioration du code `checkCoord`
+	
+- Mise en place du `random` dans la classe `WarGame`
+	
+- Créations des tests suivant la même structure de dossiers que les dossiers des classes. Commposition du dossier `tests`, voici les premiers fichiers :
+	- `tests/Game/CellTest.java`
+	- `tests/Game/GameTest.java`
+	- `tests/Game/PlayerTest.java`
+	- `tests/WarGame/WarPlayerTest.java`
+	- `tests/FarmGame/FarmPlayerTest.java`
+
+- Mise en place du `Makefile`
+
 ## Semaine 10
+
+- Finitions du `random` pour les classes `FarmGame` et `WarGame`: 
+	- mise en place de la class `FarmGameRandom`
+	- mise en place de la class `FarmGameRandomMain`
+	- mise en place de la class `WarGameRandom`
+	- mise en place de la class `WarGameRandomMain`
+	
+- Mise à jour 1 de `Makefile` :
+	- modification de `cls`
+	- ajout de `guerre.jar`
+	- ajout de `agricole.jar`
+		
+- Tests : 
+	- pour la classe `WarPlayTest`
 
 ## Semaine 11
 
+- Mise à jour 1 de `Makefile` :
+	- ajout de `guerre-multi.jar`
+	- ajout de `agricole-multi.jar`
+	- modification `clean`
+	- modification `agricole.jar`
+	
+- Mise à jour 2 de `Makefile`, utilisation de `ifeq` et `endif` :
+	- modification de `guerre.jar`
+	- modification de `guerre-multi.jar`
+	- modification de `agricole.jar`
+	- modification de `agricole-multi.jar`
+
+- Modification du message d'erreur en cas d'erreur, classes concernées :
+	- `FarmGame`
+	- `WarGame`
+	
+- Ajout méthode `addPlayer` pour faciliter la manipulation des joueurs dans la classe `Game`
+
+-Ajout `equals` dans la classe `Player`
+
+- Tests 1 (suite) : 
+	- classe `FarmGameTest`
+	- classe `FarmePlayerTest`
+	- classe `FarmGameMain`
+	- classe `WorkerTest`
+	- classe `ArmyTest`
+	- classe `WarGameTest`
+
+- Tests 2 (suite) : 
+	- classe `WarGameTest` (utilisation de `@Before`)
+	
+- Modification de la classe `FarmGameMain`
+
+
 ## Semaine 12
+
+- Documentation de toutes les classes
+- Finalisation et amélioration du code
 
 
 ## Comment créer un jeu :
+
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+
