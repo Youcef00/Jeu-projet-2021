@@ -117,19 +117,19 @@ Voici la structure de notre projet.
 ## Dossiers
 Voici l'arborescence des dossiers :
 
-![arborescences dossier](images/arborescences/arborescence_dossiers.png?raw=true "Title")
+![arborescences_dossier](images/arborescences/arborescence_dossiers.png?raw=true "Title")
 
 ## Fichiers
 
 ### Dossier : `src`
 Voici l'arborescence des fichiers dans le dossier `src` : 
 
-![arborescences dossier](images/arborescences/arborescence_src.png?raw=true "Title")
+![arborescences src](images/arborescences/arborescence_src.png?raw=true "Title")
 
 ### Dossier : `tests`
 Voici l'arborescence des fichiers dans le dossier `tests` :
 
-![arborescences dossier](images/arborescences/arborescence_tests.png?raw=true "Title")
+![arborescences tests](images/arborescences/arborescence_tests.png?raw=true "Title")
 
 
 
