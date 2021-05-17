@@ -81,11 +81,30 @@ Il ne nous reste pas de problèmes non résolu. Il nous reste de finir de compl�
 
 ### Difficultés restant à résoudre
 
+Implémentations de l'affichage pour l'utilisateur
+
 ## Livrable 4
 
-### Atteinte des objectifs
+### Affichage dans le terminal :
 
-### Difficultés restant à résoudre
+#### La carte
+
+- Nous avons implémenté un affichage de la carte dans le terminal. Voici comment l'utiliser. Chaque biome possède une lettre qui l'identifie : 
+	`[O]` -> océan
+	`[M]` -> montagne
+	`[D]` -> desert
+	`[P]` -> plaine
+	`[F]` -> foret
+	
+- Lorsque l'on ajoute une armée ou un ouvrier sur la carte, la lettre du biome change et devient alors `[A]`, cela permet de visualiser l'emplacement où les autres joueurs ont déployé.
+
+- Comment bien déployer en utilisant les coordonnées ? 
+L'axe des `x` est l'axe vertical et l'axe des `y` est  l'axe horizontal.
+	
+#### Informatoins complémentaires
+
+- Pour que l'utilisateur ne soit pas perdu, à chaque tour l'utilisateur voit ses troupes déployées, ses ressources et peut s'appuier sur la carte pour choisir les zones les plus stratégiques. 
+- A la fin de la partie, il y a un résumé des points des joueurs et le vainqueur.
 
 
 # UML 
@@ -235,5 +254,18 @@ Il ne nous reste pas de problèmes non résolu. Il nous reste de finir de compl�
 
 ## Comment créer un jeu :
 
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 
