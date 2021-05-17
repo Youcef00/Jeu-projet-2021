@@ -158,12 +158,12 @@ Après avoir crée l'executable, vous pouvez lancer le jeu :
 
 - Jeu de `Guerre` :
 ```shell
-% java -jar jar/guerre.jar Joueur1 Joueur2 Joueur3
+% java -jar jar/guerre.jar Raymond Odette
 ```
 
 - Jeu `Agricole` :
 ```shell
-% java -jar jar/agricole.jar Raymond Odette
+% java -jar jar/agricole.jar Vigneron Eleveur Maraicher
 ```
 
 # Journal de bord
