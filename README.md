@@ -87,9 +87,15 @@ Il ne nous reste pas de problèmes non résolu. Il nous reste de finir de compl�
 
 ### Difficultés restant à résoudre
 
+
+# UML 
+
+![Alt UML](UML/class-diagram.jpeg?raw=true "Title")
+
 # Journal de bord
 
 ## Semaine 1
+- Modélisation de l'ensemble de notre projet
 - UML provisoire
 - Classes créees / partielment crées: 
   - Dans le dossier `Game` :
