@@ -107,6 +107,10 @@ L'axe des `x` est l'axe vertical et l'axe des `y` est  l'axe horizontal.
 - A la fin de la partie, il y a un résumé des points des joueurs et le vainqueur.
 
 
+# Arborescences 
+## Dossiers
+![Alt ](arborescences/arborescence_dossiers.png?raw=true "Title")
+
 # UML 
 
 ![Alt UML](UML/class-diagram.jpeg?raw=true "Title")
