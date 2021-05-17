@@ -90,11 +90,15 @@ Implémentations de l'affichage pour l'utilisateur
 #### La carte
 
 - Nous avons implémenté un affichage de la carte dans le terminal. Voici comment l'utiliser. Chaque biome possède une lettre qui l'identifie : 
-	`[O]` -> océan
-	`[M]` -> montagne
-	`[D]` -> desert
-	`[P]` -> plaine
-	`[F]` -> foret
+	- `O` -> océan
+	- `[M]` -> montagne
+	- `[D]` -> desert
+	- `[P]` -> plaine
+	- `[F]` -> foret
+	
+Voici un exemple d'affichage de la carte : 
+
+![arborescences dossier](images/exemples/carte_exemple.png?raw=true "Title")
 	
 - Lorsque l'on ajoute une armée ou un ouvrier sur la carte, la lettre du biome change et devient alors `[A]`, cela permet de visualiser l'emplacement où les autres joueurs ont déployé.
 
@@ -108,12 +112,32 @@ L'axe des `x` est l'axe vertical et l'axe des `y` est  l'axe horizontal.
 
 
 # Arborescences 
+Voici la structure de notre projet. 
+
 ## Dossiers
-![Alt ](arborescences/arborescence_dossiers.png?raw=true "Title")
+Voici l'arborescence des dossiers :
+
+![arborescences dossier](images/arborescences/arborescence_dossiers.png?raw=true "Title")
+
+## Fichiers
+
+### src
+Voici l'arborescence des fichiers dans le dossier `src` : 
+![arborescences dossier](images/arborescences/arborescence_src.png?raw=true "Title")
+
+### tests
+Voici l'arborescence des fichiers dans le dossier `tests` :
+
+![arborescences dossier](images/arborescences/arborescence_tests.png?raw=true "Title")
+
+
 
 # UML 
+Ce UML est accésible en plus grand si vous cliquez dessus, ou dans le dossier `./images/UML`. 
+- Précision : les méthodes possédant le symbole `#` sont des méthodes abstraites.
 
-![Alt UML](UML/class-diagram.jpeg?raw=true "Title")
+![UML](images/UML/class-diagram.jpeg?raw=true "Title")
+
 
 # Journal de bord
 
