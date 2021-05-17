@@ -121,11 +121,12 @@ Voici l'arborescence des dossiers :
 
 ## Fichiers
 
-### src
+### Dossier : `src`
 Voici l'arborescence des fichiers dans le dossier `src` : 
+
 ![arborescences dossier](images/arborescences/arborescence_src.png?raw=true "Title")
 
-### tests
+### Dossier : `tests`
 Voici l'arborescence des fichiers dans le dossier `tests` :
 
 ![arborescences dossier](images/arborescences/arborescence_tests.png?raw=true "Title")
