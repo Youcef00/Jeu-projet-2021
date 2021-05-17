@@ -140,6 +140,32 @@ Ce UML est accésible en plus grand si vous cliquez dessus, ou dans le dossier `
 ![UML](images/UML/class-diagram.jpeg?raw=true "Title")
 
 
+# Makefile
+
+- Les commandes `make` : 
+	- `all`, 
+	- `cls`, produit les fichiers `.class`,
+	- `doc`, produit la javadoc,
+	- `guerre.jar`, créer l'executable pour le jeu de guerre aléatoire, 
+	- `guerre-multi.jar`, créer l'executable pour le jeu de guerre sans le mode aléatoire, 
+	- `agricole.jar`, créer l'executable pour le jeu agricole aléatoire, 
+	- `agricole-multi.jar`, créer l'executable pour le jeu agricole sans le mode aléatoire, 
+	- `clean`,
+	- `.PHONY`.
+
+# Jouer (aléatoire)
+Après avoir crée l'executable, vous pouvez lancer le jeu : 
+
+- Jeu de `Guerre` :
+```shell
+% java -jar jar/guerre.jar Joueur1 Joueur2 Joueur3
+```
+
+- Jeu `Agricole` :
+```shell
+% java -jar jar/agricole.jar Raymond Odette
+```
+
 # Journal de bord
 
 ## Semaine 1
