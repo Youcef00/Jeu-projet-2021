@@ -142,23 +142,92 @@ Il ne nous reste pas de problèmes non résolu. Il nous reste de finir de compl�
   
 ## Semaine 3
 
-## Semaine 4
+- Modifications du readme
+- Corrections de bugs :
+	- problème avec la condition dans le `while` (class `FarmGame` :  `playOneRound`)
+	- problème avec la condition dans le `while` (class `WarGame` :  `playOneRound`)
 
-## Semaine 5
-
-## Semaine 6
-
-## Semaine 7
-
-## Semaine 8
 
 ## Semaine 9
 
+- Modifications `playOneRound` dans `WarGame` :
+	- On demande maintenant la taille de l'armée après avoir demandé les coordonnées de la case
+	- gestion de ressources (amélioration)
+	- amélioration de `playOneRound`
+
+- Modifications de la class `Game`:
+	- amélioration du code `checkCoord`
+	
+- Mise en place du `random` dans la classe `WarGame`
+	
+- Créations des tests suivant la même structure de dossiers que les dossiers des classes. Commposition du dossier `tests`, voici les premiers fichiers :
+	- `tests/Game/CellTest.java`
+	- `tests/Game/GameTest.java`
+	- `tests/Game/PlayerTest.java`
+	- `tests/WarGame/WarPlayerTest.java`
+	- `tests/FarmGame/FarmPlayerTest.java`
+
+- Mise en place du `Makefile`
+
 ## Semaine 10
+
+- Finitions du `random` pour les classes `FarmGame` et `WarGame`: 
+	- mise en place de la class `FarmGameRandom`
+	- mise en place de la class `FarmGameRandomMain`
+	- mise en place de la class `WarGameRandom`
+	- mise en place de la class `WarGameRandomMain`
+	
+- Mise à jour 1 de `Makefile` :
+	- modification de `cls`
+	- ajout de `guerre.jar`
+	- ajout de `agricole.jar`
+		
+- Tests : 
+	- pour la classe `WarPlayTest`
 
 ## Semaine 11
 
+- Mise à jour 1 de `Makefile` :
+	- ajout de `guerre-multi.jar`
+	- ajout de `agricole-multi.jar`
+	- modification `clean`
+	- modification `agricole.jar`
+	
+- Mise à jour 2 de `Makefile`, utilisation de `ifeq` et `endif` :
+	- modification de `guerre.jar`
+	- modification de `guerre-multi.jar`
+	- modification de `agricole.jar`
+	- modification de `agricole-multi.jar`
+
+- Modification du message d'erreur en cas d'erreur, classes concernées :
+	- `FarmGame`
+	- `WarGame`
+	
+- Ajout méthode `addPlayer` pour faciliter la manipulation des joueurs dans la classe `Game`
+
+-Ajout `equals` dans la classe `Player`
+
+- Tests 1 (suite) : 
+	- classe `FarmGameTest`
+	- classe `FarmePlayerTest`
+	- classe `FarmGameMain`
+	- classe `WorkerTest`
+	- classe `ArmyTest`
+	- classe `WarGameTest`
+
+- Tests 2 (suite) : 
+	- classe `WarGameTest` (utilisation de `@Before`)
+	
+- Modification de la classe `FarmGameMain`
+
+
 ## Semaine 12
+
+- Documentation de toutes les classes
+- Finalisation et amélioration du code
 
 
 ## Comment créer un jeu :
+
+
+
