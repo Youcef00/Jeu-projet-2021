@@ -1,8 +1,7 @@
 # l2s4-projet-2021
 
-
-
-# Equipe
+# GROUPE 4
+## Equipe 
 
 - Youcef MOUKEUT
 - Alpha Oumar BARRY
@@ -172,16 +171,16 @@ Pour géner la documentation il suffit de mettre cette commande dans votre termi
 
 - Pour consulter la documentation de `Game` dans votre navigateur, veuillez mettre dans le terminal (à partir de la racine) :
 ```shell
-% xdg-open /docs/Game/index.html
+% xdg-open ./docs/docs-Game/index.html
 ```
 - Pour `WarGame` :
 ```shell
-% xdg-open /docs/docs-Game/index.html
+% xdg-open ./docs/docs-WarGame/index.html
 ```
 
 - Pour `FarmGame` :  
 ```shell
-% xdg-open /docs/docs-FarmGame/index.html
+% xdg-open ./docs/docs-FarmGame/index.html
 ```
 
 # Jouer (aléatoire)
