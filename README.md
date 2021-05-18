@@ -301,7 +301,7 @@ Après avoir crée l'executable, vous pouvez lancer le jeu :
 	- classe `WarGameTest`
 
 - Tests 2 (suite) : 
-	- classe `WarGameTest` (utilisation de `@Before`)
+	- classe `WarGameTest`
 	
 - Modification de la classe `FarmGameMain`
 

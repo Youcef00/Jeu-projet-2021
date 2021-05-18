@@ -11,9 +11,9 @@ cls:
 	
 
 doc:
-	cd src; javadoc -d ../docs -subpackages Game
-	cd src; javadoc -d ../docs -subpackages FarmGame
-	cd src; javadoc -d ../docs -subpackages WarGame
+	cd src; javadoc -d ../docs/docs-Game -subpackages Game
+	cd src; javadoc -d ../docs/docs-FarmGame -subpackages FarmGame
+	cd src; javadoc -d ../docs/docs-WarGame -subpackages WarGame
 
 
 
