@@ -134,10 +134,15 @@ Voici l'arborescence des fichiers dans le dossier `tests` :
 
 
 # UML 
-Ce UML est accésible en plus grand si vous cliquez dessus, ou dans le dossier `./images/UML`. 
 - Précision : les méthodes possédant le symbole `#` sont des méthodes abstraites.
 
-![UML](images/UML/class-diagram.jpeg?raw=true "Title")
+## Livrable 1
+![UML](images/UML/livrable1.png?raw=true "Title")
+
+
+## Livrable 4
+Ce UML est accésible en plus grand si vous cliquez dessus, ou dans le dossier `./images/UML`. 
+![UML](images/UML/livrable4.jpeg?raw=true "Title")
 
 
 # Makefile
