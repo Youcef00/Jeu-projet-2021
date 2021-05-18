@@ -76,8 +76,7 @@ Nous avons atteint notre objectif qui était de finir la conceptualisation du pr
 Il ne nous reste pas de problèmes non résolu. Il nous reste de finir de compléter la documentation des classes et d'ajouter les testes.
 
 ## Livrable 3
-
-### Atteinte des objectifs
+Nous avons décider de modéliser les actions par des méthodes, car comme pour le `board`, si l'utilisateur veut changer une fonction, il peut la surcharger ou bien si elle n'existe pas, on peut ajouter cette action comme méthode.
 
 ### Difficultés restant à résoudre
 
@@ -337,22 +336,3 @@ Après avoir crée l'executable, vous pouvez lancer le jeu :
 
 - Documentation de toutes les classes
 - Finalisation et amélioration du code
-
-
-## Comment créer un jeu :
-
-
-
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-
-
