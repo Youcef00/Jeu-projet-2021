@@ -34,7 +34,7 @@ Voici un résume de nos modélisations :
 <li>Modélisation d'un joueur :
     	<ul>
     		<li>La classe <code>Player</code> est une <b>classe abstraite</b> commune à tous les joueurs d'un jeu,</li>
-    		<li>Les classes <code>WarPlayer</code> et <code>FarmPlayer</code> représentent réspectivement les joueurs du jeu de guerre et du jeu de développement agricoleelles, elles héritent de la classe <code>Player</code>,</li>
+    		<li>Les classes <code>WarPlayer</code> et <code>FarmPlayer</code> représentent respectivement les joueurs du jeu de guerre et du jeu de développement agricole, elles héritent de la classe <code>Player</code>,</li>
     	</ul>
     </li>
     	
@@ -54,28 +54,28 @@ Voici un résume de nos modélisations :
     
 </ul>
 
-Tous ces modélisations, sont accompagnés d'un diagramme **UML**, qui comporte les attribues et les méthodes associées. Vous trouverez ces diagrammes __UML__ dans le dossier `/UML`, puis ouvrer l'un des fichiers dont le format vous convient.
+Toutes ces modélisations, sont accompagnés d'un diagramme **UML**, qui comporte les attribues et les méthodes associées. Vous trouverez ces diagrammes __UML__ dans le dossier `/UML`, puis ouvrer l'un des fichiers dont le format vous convient.
 
-Nous avons aussi organisé et codé la plus part de nos classes modélisées. 
+Nous avons aussi organisé et codé la plupart de nos classes modélisées. 
 
 ### Difficultés restant à résoudre
 
-Il nous reste à mettre en place les régles des jeux, la modélisation d'un plateau, et plus exactement re-penser la modélisation d'une tuile.
+Il nous reste à mettre en place les règles des jeux, la modélisation d'un plateau, et plus exactement repenser la modélisation d'une tuile.
 
 
 ## Livrable 2
 
 ### Modélisation du plateau
-Nous avons opté de générer le plateau dans la class <code>Game</code>, grâce à la méthode <code>setBoard</code>, nous avons pour tous les deux jeux le même plateau. Nous avons décidé de mettre une méthode pour le plateau car pour nous avons considéré le plateau étant secondaire.
+Nous avons opté de générer le plateau dans la class <code>Game</code>, grâce à la méthode <code>setBoard</code>, nous avons pour tous les deux jeux le même plateau. Nous avons décidé de mettre une méthode pour le plateau car nous avons considéré le plateau étant secondaire.
 
 ### Atteinte des objectifs
-Nous avons atteint notre objectif qui était de finir la conceptualisation du projet. De plus nous avons réussi aussi à coder complétement les différents classes, et réussi à tester les deux jeux. Nous avons apporté quelques corrections de bugs, pour fludifier le jeu et de ne pas recontrer de problème. Nous allons maintemant nous focaliser sur une mise en place d'une interface graphique.
+Nous avons atteint notre objectif qui était de finir la conceptualisation du projet. De plus nous avons réussi aussi à coder complétement les différentes classes, et réussi à tester les deux jeux. Nous avons apporté quelques corrections de bugs, pour fluidifier le jeu et de ne pas rencontrer de problème. Nous allons maintenant nous focaliser sur une mise en place d'une interface graphique.
 
 ### Difficultés restant à résoudre
-Il ne nous reste pas de problèmes non résolu. Il nous reste de finir de compléter la documentation des classes et d'ajouter les testes.
+Il ne nous reste pas de problèmes non résolu. Il nous reste à finir de compléter la documentation des classes et d'ajouter les testes.
 
 ## Livrable 3
-Nous avons décider de modéliser les actions par des méthodes, car comme pour le `board`, si l'utilisateur veut changer une fonction, il peut la surcharger ou bien si elle n'existe pas, on peut ajouter cette action comme méthode.
+Nous avons décidé de modéliser les actions par des méthodes, car comme pour le `board`, si l'utilisateur veut changer une fonction, il peut la surcharger ou bien si elle n'existe pas, on peut ajouter cette action comme méthode.
 
 ### Difficultés restant à résoudre
 
@@ -90,7 +90,7 @@ Implémentations de l'affichage pour l'utilisateur.
 - Nous avons implémenté un affichage de la carte dans le terminal. Voici comment l'utiliser. Chaque biome possède une lettre qui l'identifie : 
 	- `O` -> océan
 	- `[M]` -> montagne
-	- `[D]` -> desert
+	- `[D]` -> désert
 	- `[P]` -> plaine
 	- `[F]` -> foret
 	
@@ -99,16 +99,16 @@ Voici un exemple d'affichage de la carte (jeu de `guerre`) :
 ![arborescences dossier](images/exemples/carte_exemple.png?raw=true "Title")
 
 
-- Lorsque l'on ajoute une armée la carte, la lettre du biome change et devient alors `[A]`, cela permet de visualiser l'emplacement où les autres joueurs ont déployé.
+- Lorsque l'on ajoute une armée sur la carte, la lettre du biome change et devient alors `[A]`, cela permet de visualiser l'emplacement où les autres joueurs ont déployé.
 
 Lorsque l'on ajoute un ouvrier sur la carte, la lettre du biome change et devient alors `[W]`, cela permet de visualiser l'emplacement où les autres joueurs ont déployé.
 
 - Comment bien déployer en utilisant les coordonnées ? 
-L'axe des `x` est l'axe vertical et l'axe des `y` est  l'axe horizontal.
+L'axe des `x` est l'axe vertical et l'axe des `y` est l'axe horizontal.
 	
 #### Informatoins complémentaires
 
-- Pour que l'utilisateur ne soit pas perdu, à chaque tour l'utilisateur voit ses troupes déployées, ses ressources et peut s'appuier sur la carte pour choisir les zones les plus stratégiques. 
+- Pour que l'utilisateur ne soit pas perdu, à chaque tour l'utilisateur voit ses troupes déployées, ses ressources et peut s'appuyer sur la carte pour choisir les zones les plus stratégiques. 
 - A la fin de la partie, il y a un résumé des points des joueurs et le vainqueur.
 
 
@@ -142,7 +142,7 @@ Voici l'arborescence des fichiers dans le dossier `tests` :
 
 
 ## Livrable 4
-Ce UML est accésible en plus grand si vous cliquez dessus, ou dans le dossier `./images/UML`. 
+Ce UML est accessible en plus grand si vous cliquez dessus, ou dans le dossier `./images/UML`. 
 ![UML](images/UML/livrable4.jpeg?raw=true "Title")
 
 
@@ -152,10 +152,10 @@ Ce UML est accésible en plus grand si vous cliquez dessus, ou dans le dossier `
 	- `all`, 
 	- `cls`, produit les fichiers `.class`,
 	- `doc`, produit la javadoc,
-	- `guerre.jar`, créer l'executable pour le jeu de guerre aléatoire, 
-	- `guerre-multi.jar`, créer l'executable pour le jeu de guerre sans le mode aléatoire, 
-	- `agricole.jar`, créer l'executable pour le jeu agricole aléatoire, 
-	- `agricole-multi.jar`, créer l'executable pour le jeu agricole sans le mode aléatoire, 
+	- `guerre.jar`, créer l'exécutable pour le jeu de guerre aléatoire, 
+	- `guerre-multi.jar`, créer l'exécutable pour le jeu de guerre sans le mode aléatoire, 
+	- `agricole.jar`, créer l'exécutable pour le jeu agricole aléatoire, 
+	- `agricole-multi.jar`, créer l'exécutable pour le jeu agricole sans le mode aléatoire, 
 	- `clean`,
 	- `.PHONY`.
 
@@ -184,7 +184,7 @@ Pour géner la documentation il suffit de mettre cette commande dans votre termi
 ```
 
 # Jouer (aléatoire)
-Après avoir crée l'executable, vous pouvez lancer le jeu : 
+Après avoir créé l'exécutable, vous pouvez lancer le jeu : 
 
 - Jeu de `Guerre` :
 ```shell
@@ -204,9 +204,9 @@ Après avoir crée l'executable, vous pouvez lancer le jeu :
 - Classes créees / partielment crées: 
   - Dans le dossier `Game` :
 	- `Cell`, 
-	- `Character`, classe abstrainte,
-	- `Game`, classe abstrainte,
-	- `Player`, classe abstrainte,
+	- `Character`, classe abstraite,
+	- `Game`, classe abstraite,
+	- `Player`, classe abstraite,
 	- `util/Biome`, interface,
 	- `util/Resource`, interface.
 	
@@ -227,11 +227,11 @@ Après avoir crée l'executable, vous pouvez lancer le jeu :
     - `Army`, hérite de la classe `Character`,
     - `WarGame`, hérite de la classe `Game`,
     - `WarPlayer`, hérite de la classe `Player`,
-    - il possède aussi un dossier `util`, qui suit la meme structure que dans le dossier `FarmGame`
+    - il possède aussi un dossier `util`, qui suit la même structure que dans le dossier `FarmGame`
 	
 ## Semaine 2
 - UML correcte,
-- Toutes les classes existantes ont été enrichi d'attributs et de méthodes.
+- Toutes les classes existantes ont été enrichies d'attributs et de méthodes.
 - Nouvelles classes ajoutées : 
   - Dans le dossier `Game` :
     - `util/Input`, permet de gérer les valeurs d'entrées,
@@ -270,7 +270,7 @@ Après avoir crée l'executable, vous pouvez lancer le jeu :
 	
 - Mise en place du `random` dans la classe `WarGame`
 	
-- Créations des tests suivant la même structure de dossiers que les dossiers des classes. Commposition du dossier `tests`, voici les premiers fichiers :
+- Créations des tests suivant la même structure de dossiers que les dossiers des classes. Composition du dossier `tests`, voici les premiers fichiers :
 	- `tests/Game/CellTest.java`
 	- `tests/Game/GameTest.java`
 	- `tests/Game/PlayerTest.java`
