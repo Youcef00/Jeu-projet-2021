@@ -67,13 +67,13 @@ Il nous reste à mettre en place les régles des jeux, la modélisation d'un pla
 ## Livrable 2
 
 ### Modélisation du plateau
-Nous avons opté de générer le plateau dans la class <code>Game</code>, grâce à la méthode <code>setBoard</code>
+Nous avons opté de générer le plateau dans la class <code>Game</code>, grâce à la méthode <code>setBoard</code>, nous avons pour tous les deux jeux le même plateau. Nous avons décidé de mettre une méthode pour le plateau car pour nous avons considéré le plateau étant secondaire.
 
 ### Atteinte des objectifs
 Nous avons atteint notre objectif qui était de finir la conceptualisation du projet. De plus nous avons réussi aussi à coder complétement les différents classes, et réussi à tester les deux jeux. Nous avons apporté quelques corrections de bugs, pour fludifier le jeu et de ne pas recontrer de problème. Nous allons maintemant nous focaliser sur une mise en place d'une interface graphique.
 
 ### Difficultés restant à résoudre
-Il ne nous reste pas de problèmes non résolu. Il nous reste de finir de compléter la documentation des classes et d'ajouter quelques testes.
+Il ne nous reste pas de problèmes non résolu. Il nous reste de finir de compléter la documentation des classes et d'ajouter les testes.
 
 ## Livrable 3
 
@@ -81,7 +81,7 @@ Il ne nous reste pas de problèmes non résolu. Il nous reste de finir de compl�
 
 ### Difficultés restant à résoudre
 
-Implémentations de l'affichage pour l'utilisateur
+Implémentations de l'affichage pour l'utilisateur.
 
 ## Livrable 4
 
@@ -160,6 +160,30 @@ Ce UML est accésible en plus grand si vous cliquez dessus, ou dans le dossier `
 	- `agricole-multi.jar`, créer l'executable pour le jeu agricole sans le mode aléatoire, 
 	- `clean`,
 	- `.PHONY`.
+
+# Documentation (javadoc)
+
+## Géner la javadoc
+Pour géner la documentation il suffit de mettre cette commande dans votre terminal :
+```shell
+% make doc
+```
+
+## Consulter
+
+- Pour consulter la documentation de `Game` dans votre navigateur, veuillez mettre dans le terminal (à partir de la racine) :
+```shell
+% xdg-open /docs/Game/index.html
+```
+- Pour `WarGame` :
+```shell
+% xdg-open /docs/docs-Game/index.html
+```
+
+- Pour `FarmGame` :  
+```shell
+% xdg-open /docs/docs-FarmGame/index.html
+```
 
 # Jouer (aléatoire)
 Après avoir crée l'executable, vous pouvez lancer le jeu : 
