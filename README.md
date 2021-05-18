@@ -96,11 +96,14 @@ Implémentations de l'affichage pour l'utilisateur
 	- `[P]` -> plaine
 	- `[F]` -> foret
 	
-Voici un exemple d'affichage de la carte : 
+Voici un exemple d'affichage de la carte (jeu de `guerre`) :
 
 ![arborescences dossier](images/exemples/carte_exemple.png?raw=true "Title")
-	
-- Lorsque l'on ajoute une armée ou un ouvrier sur la carte, la lettre du biome change et devient alors `[A]`, cela permet de visualiser l'emplacement où les autres joueurs ont déployé.
+
+
+- Lorsque l'on ajoute une armée la carte, la lettre du biome change et devient alors `[A]`, cela permet de visualiser l'emplacement où les autres joueurs ont déployé.
+
+Lorsque l'on ajoute un ouvrier sur la carte, la lettre du biome change et devient alors `[W]`, cela permet de visualiser l'emplacement où les autres joueurs ont déployé.
 
 - Comment bien déployer en utilisant les coordonnées ? 
 L'axe des `x` est l'axe vertical et l'axe des `y` est  l'axe horizontal.
