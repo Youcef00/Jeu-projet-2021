@@ -40,7 +40,6 @@ ifeq ("$(wildcard ./classes/FarmGame/*.class)", "")
 	make cls
 endif
 	cd classes; jar cvfm ../jar/agricole.jar ../jar/manifests/manifest-agricole FarmGame Game
-	
 
 clean:
 	rm -f jar/*.jar

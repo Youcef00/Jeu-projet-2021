@@ -135,15 +135,15 @@ Voici l'arborescence des fichiers dans le dossier `tests` :
 
 
 # UML 
-- Précision : les méthodes possédant le symbole `#` sont des méthodes abstraites.
+- Précision : Dans l'UML livrable 1 les méthodes possédant le symbole `#` sont des méthodes abstraites et puis pour le livrable 4 comme y'a deja des methodes protected et pour ne pas confondre on a mis le symbole `~` pour les methodes abstarites.
 
 ## Livrable 1
-![UML](images/UML/livrable1.png?raw=true "Title")
+![UML](images/UML/livrable1/livrable1.jpeg?raw=true "Title")
 
 
 ## Livrable 4
 Ce UML est accessible en plus grand si vous cliquez dessus, ou dans le dossier `./images/UML`. 
-![UML](images/UML/livrable4.jpeg?raw=true "Title")
+![UML](images/UML/livrable4/livrable4.jpeg?raw=true "Title")
 
 
 # Makefile
