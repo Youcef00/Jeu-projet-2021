@@ -1,4 +1,4 @@
-# l2s4-projet-2021
+# Jeu Projet 2021
 
 # GROUPE 4
 ## Equipe 
